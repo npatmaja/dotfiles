@@ -22,13 +22,13 @@ LOCAL_BIN=/usr/local/bin:/opt/local/bin:/opt/local/sbin:/usr/bin:/usr/sbin:/usr/
 
 # colorize ls
 export CLICOLOR=1 
-export LSCOLORS=ExFxBxDxCxegedabagacad
+export LSCOLORS=GxFxCxDxBxegedabagaced
 
 # Colorize "username@hostname:cwd $" line
 # The colors are preceded by an escape sequence \e and defined by a color value, 
 # composed of [style;color+m] and wrapped in an escaped [] sequence
 # Ref: https://wiki.archlinux.org/index.php/Color_Bash_Prompt#Step_by_step
-export PS1='\[\e[0;33m\]\u\[\e[0m\]@\[\e[0;32m\]\h\[\e[0m\]:\[\e[0;34m\]\w\[\e[0m\]\$ '
+export PS1='\[\e[0;33m\]\u\[\e[0m\]@\[\e[1;31m\]\h\[\e[0m\]:\[\e[0;35m\]\w\[\e[0m\]\$ '
 
 # Tell grep to highlight matches
 export GREP_OPTIONS='--color=auto'
