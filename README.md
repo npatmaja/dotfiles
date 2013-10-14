@@ -1,4 +1,4 @@
-dofiles
+dotfiles
 =======
 
 my dot files
