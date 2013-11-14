@@ -6,6 +6,9 @@ alias ...='cs ../../'
 alias ll='ls -al'
 # ls with -G use color, -F add signs after directory of links etc.
 alias ls='ls -GFh'
+# Show disk usage within a folder. This will list only
+# a folder right inside it.
+alias du='du -h -d 1'
 
 # Shortcuts
 alias ~='cd ~/'
@@ -13,7 +16,9 @@ alias dl='cd ~/Downloads'
 alias db='cd ~/Dropbox'
 alias dc='cd ~/Codes'
 
-
+# Apps Shortcuts
+alias vlc='/Applications/VLC.app/Contents/MacOS/VLC'
+alias qtp='/Applications/QuickTime\ Player.app/Contents/MacOS/QuickTime\ Player'
 
 # Paths
 ANDROID_SDK=/Users/nauval/android-sdks/platform-tools 
