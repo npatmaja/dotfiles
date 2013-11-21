@@ -14,7 +14,7 @@ alias du='du -h -d 1'
 alias ~='cd ~/'
 alias dl='cd ~/Downloads'
 alias db='cd ~/Dropbox'
-alias dc='cd ~/Codes'
+alias code='cd ~/Codes'
 
 # Apps Shortcuts
 alias vlc='/Applications/VLC.app/Contents/MacOS/VLC'
