@@ -31,6 +31,39 @@ set noerrorbells
 set nobackup
 set noswapfile
 
+" Indentation
+set tabstop=4	" set tab to four spaces
+set backspace=indent,eol,start	" allow backspacing over everything in insert mode
+set autoindent	" set autoindent on
+set copyindent	" copy prev indentation on autoindenting
+set shiftwidth=4	" number of spaces to use for autoindenting
+set shiftround	" use multiple of shiftwidth when indenting with '<' and '
+set smarttab	" insert tabs on the start of a line according to shiftwidth, not tabstop
+
+" Search
+set showmatch	" set show matching parenthesis
+set ignorecase	" ignore case when search
+set smartcase	" ignore case if search pattern is all lower case, case sensitive if otherwise
+set hlsearch	" highlight search terms
+set incsearch	" show search matches as you type
+
+" Wrapping
+set nowrap
+
+" Statusline
+set laststatus=2	" always display statusline
+set statusline=%t	" tail of the filename 
+set statusline+=[%{strlen(&fenc)?&fenc:'none'},	"file encoding
+set statusline+=%{&ff}]	"file format
+set statusline+=%h	"help file flag
+set statusline+=%m	"modified flag
+set statusline+=%r	"read only flag
+set statusline+=%y	"filetype
+set statusline+=%=	"switch to right side
+set statusline+=%c,	"cursor column
+set statusline+=\%l/%L	"cursor line/total lines
+set statusline+=\ %P	"percent through file
+
 " Solarized
 "colorscheme solarized
 "let g:solarized_termcolors= 256 
@@ -57,8 +90,8 @@ inoremap <C-s> <esc>:w<cr>a
 nnoremap <C-q> :q!<cr>
 inoremap <C-q> <esc>:q!<cr>
 " Save then quit
-nnoremap <C-w> :wq<cr>
-inoremap <C-w> <esc>:wq<cr>
+nnoremap <C-w> :wq!<cr>
+inoremap <C-w> <esc>:wq!<cr>
 
 " Fast edit .vimrc file
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
@@ -102,6 +135,18 @@ inoremap OC <nop>
 inoremap OB <nop>
 inoremap OD <nop>
 
+" Use ctrl+j to insert new line in normal mode without entering insert mode
+nnoremap <C-j> ciW<CR><Esc>:if match( @", "^\\s*$") < 0<Bar>exec "norm P-$diw+"<Bar>endif<CR> 
+
+" Use ctrl+l to clear the search highlight
+nnoremap <silent> <c-l> :nohls<cr>
+
+" Pastetogle, useful if paste code from outside application.
+" Use only in vim terminal, if in GUI set toggle off.
+" Map toggle to ctrl+t
+nnoremap <c-t> :set invpaste paste?<cr>
+set pastetoggle=<c-t>
+set showmode
 
 " Abbreviations
 " typos
@@ -110,9 +155,28 @@ iabbrev tehn then
 
 iabbrev @@ nauval.atmaja@gmail.com
 iabbrev @@1 noval.78@gmail.com
-iabbrev @a @author Nauval Atmaja
+iabbrev @@a @author Nauval Atmaja
 
-" Autocommands
-autocmd FileType javascript nnoremap <buffer> <localleader>c I//<esc>
-autocmd FileType javascript nnoremap <buffer> <localleader>C I/**<cr>*<cr>*<cr>**/<esc>
-autocmd FileType javascript nnoremap <buffer> <localleader>c I//<esc>
+" Autocommands -------------------------------------{{{
+augroup filetype_js
+	autocmd!
+	autocmd FileType javascript nnoremap <buffer> <localleader>c I//<esc>
+augroup END
+
+augroup filetype_python
+	autocmd!
+	autocmd FileType python nnoremap <buffer> <localleader>c I#<esc>
+augroup END
+
+augroup filetype_python
+	autocmd!
+	autocmd FileType java nnoremap <buffer> <localleader>c I//<esc>
+augroup END
+" Vimscript file setting ----------------------------{{{
+augroup filetype_vim
+	autocmd!
+	autocmd FileType vim setlocal foldmethod=marker
+augroup END
+" }}}
+" }}}
+

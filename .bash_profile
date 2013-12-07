@@ -6,8 +6,7 @@ alias ...='cs ../../'
 alias ll='ls -al'
 # ls with -G use color, -F add signs after directory of links etc.
 alias ls='ls -GFh'
-# Show disk usage within a folder. This will list only
-# a folder right inside it.
+# Show disk usage within a folder. This will list only a folder right inside it.
 alias du='du -h -d 1'
 
 # Shortcuts
@@ -15,10 +14,16 @@ alias ~='cd ~/'
 alias dl='cd ~/Downloads'
 alias db='cd ~/Dropbox'
 alias code='cd ~/Codes'
+alias www='cd /Library/WebServer/Documents/'
+
+alias br='. ~/.bash_profile' # or use "source ~/.bash_profile" command to reload bash profile alternatively 
 
 # Apps Shortcuts
 alias vlc='/Applications/VLC.app/Contents/MacOS/VLC'
 alias qtp='/Applications/QuickTime\ Player.app/Contents/MacOS/QuickTime\ Player'
+alias vim='/Applications/MacVim.app/Contents/MacOS/Vim' # Use MacVim's Vim instead of default vim
+
+alias apache='sudo apachectl'
 
 # Paths
 ANDROID_SDK=/Users/nauval/android-sdks/platform-tools 
@@ -42,3 +47,6 @@ export PATH=$SYS_BIN:$LOCAL_BIN:$ANDROID_SDK:$PATH
 
 # RubyEnv init
 eval "$(rbenv init -)"
+
+# Set stty to ixon to enable <C-s> in vim. Ref http://unix.stackexchange.com/questions/72086/ctrl-s-hang-terminal-emulator
+stty -ixon
