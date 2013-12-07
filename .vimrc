@@ -141,7 +141,7 @@ nnoremap <C-j> ciW<CR><Esc>:if match( @", "^\\s*$") < 0<Bar>exec "norm P-$diw+"<
 " Use ctrl+l to clear the search highlight
 nnoremap <silent> <c-l> :nohls<cr>
 
-" Pastetogle, useful if paste code from outside application.
+" Pastetoggle, useful if paste code from outside application.
 " Use only in vim terminal, if in GUI set toggle off.
 " Map toggle to ctrl+t
 nnoremap <c-t> :set invpaste paste?<cr>
