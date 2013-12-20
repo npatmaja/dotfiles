@@ -17,6 +17,9 @@ filetype plugin indent on
 " Syntax highlight
 syntax on
 
+" Set buffer to be hidden
+set hidden
+
 " Uses dark background
 set background=dark
 
@@ -50,31 +53,20 @@ set incsearch	" show search matches as you type
 " Wrapping
 set nowrap
 
-" Statusline
-set laststatus=2	" always display statusline
-set statusline=%t	" tail of the filename 
-set statusline+=[%{strlen(&fenc)?&fenc:'none'},	"file encoding
-set statusline+=%{&ff}]	"file format
-set statusline+=%h	"help file flag
-set statusline+=%m	"modified flag
-set statusline+=%r	"read only flag
-set statusline+=%y	"filetype
-set statusline+=%=	"switch to right side
-set statusline+=%c,	"cursor column
-set statusline+=\%l/%L	"cursor line/total lines
-set statusline+=\ %P	"percent through file
-
-" Solarized
-"colorscheme solarized
-"let g:solarized_termcolors= 256 
-"let g:solarized_termtrans = 1
-"let g:solarized_degrade = 0 
-"let g:solarized_bold = 0 
-"let g:solarized_underline = 0
-"let g:solarized_italic = 0
-"let g:solarized_contrast = \"normal" 
-"let g:solarized_visibility= \"normal"
-
+set laststatus=2
+" Statusline -- not used, use vim-neatstatus plugin https://github.com/maciakl/vim-neatstatus
+" set laststatus=2	" always display statusline
+" set statusline=%t	" tail of the filename 
+" set statusline+=[%{strlen(&fenc)?&fenc:'none'},	"file encoding
+" set statusline+=%{&ff}]	"file format
+" set statusline+=%h	"help file flag
+" set statusline+=%m	"modified flag
+" set statusline+=%r	"read only flag
+" set statusline+=%y	"filetype
+" set statusline+=%=	"switch to right side
+" set statusline+=%c,	"cursor column
+" set statusline+=\%l/%L	"cursor line/total lines
+" set statusline+=\ %P	"percent through file
 
 " Vim Javascript
 let g:html_indent_inctags = "html,body,head,tbody"
@@ -89,9 +81,10 @@ inoremap <C-s> <esc>:w<cr>a
 " Quit vim, 'ctrl+q' to quit without save
 nnoremap <C-q> :q!<cr>
 inoremap <C-q> <esc>:q!<cr>
-" Save then quit
-nnoremap <C-w> :wq!<cr>
-inoremap <C-w> <esc>:wq!<cr>
+
+" Save then quit -- Disabled, to enable open in window split
+" nnoremap <C-w> :wq!<cr>
+" inoremap <C-w> <esc>:wq!<cr>
 
 " Fast edit .vimrc file
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
@@ -106,10 +99,10 @@ nnoremap ∆ :m .+1<cr>==
 inoremap ∆ <esc>:m .+1<cr>==gi
 
 " Surround a word with double quote
-nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
+nnoremap <leader>" viW<esc>a"<esc>hBi"<esc>lel
 
 " Surround a word with single quote
-nnoremap <leader>' viw<esc>a'<esc>hbi'<esc>lel
+nnoremap <leader>' viW<esc>a'<esc>hBi'<esc>lel
 
 " Use H to go to the beginning of a line, L to the end of a line
 nnoremap H ^
@@ -145,8 +138,27 @@ nnoremap <silent> <c-l> :nohls<cr>
 " Use only in vim terminal, if in GUI set toggle off.
 " Map toggle to ctrl+t
 nnoremap <c-t> :set invpaste paste?<cr>
+inoremap <c-t> <esc>:set invpaste paste?<cr>
+
+" Insert a new line under current text without enter to insert mode
+nnoremap <leader>o o<esc>
+
 set pastetoggle=<c-t>
 set showmode
+
+" Move to another window split
+nnoremap <leader>h :wincmd h<cr>
+nnoremap <leader>j :wincmd j<cr>
+nnoremap <leader>k :wincmd k<cr>
+nnoremap <leader>l :wincmd l<cr>
+
+" Unite key mapping
+nnoremap <c-f><c-s> <esc>:Unite file buffer<cr>
+inoremap <c-f><c-s> <esc>:Unite file buffer<cr>
+
+" PDV php documentor
+let g:pdv_template_dir = $HOME ."/.vim/bundle/pdv/templates_snip"
+nnoremap <buffer> <C-p> :call pdv#DocumentWithSnip()<CR>
 
 " Abbreviations
 " typos
@@ -155,7 +167,8 @@ iabbrev tehn then
 
 iabbrev @@ nauval.atmaja@gmail.com
 iabbrev @@1 noval.78@gmail.com
-iabbrev @@a @author Nauval Atmaja
+iabbrev @@a @author Nauval Atmaja <noval.78@gmail.com>
+iabbrev @@b @author Nauval Atmaja <nauval.atmaja@gmail.com>
 
 " Autocommands -------------------------------------{{{
 augroup filetype_js
@@ -168,7 +181,12 @@ augroup filetype_python
 	autocmd FileType python nnoremap <buffer> <localleader>c I#<esc>
 augroup END
 
-augroup filetype_python
+augroup filetype_php
+	autocmd!
+	autocmd FileType php nnoremap <buffer> <localleader>c I//<esc>
+augroup
+
+augroup filetype_java
 	autocmd!
 	autocmd FileType java nnoremap <buffer> <localleader>c I//<esc>
 augroup END
