@@ -73,6 +73,10 @@ let g:html_indent_inctags = "html,body,head,tbody"
 let g:html_indent_script1 = "inc"
 let g:html_indent_style1 = "inc"
 
+" latex-box plugin
+" let g:LatexBox_latexmk_options="-pdf"
+let g:LatexBox_output_type="pdf"
+
 " Key mappings
 " Save file to ctrl+s
 nnoremap <C-s> :w<cr>  
