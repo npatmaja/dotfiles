@@ -30,6 +30,10 @@ ANDROID_SDK=/Users/nauval/android-sdks/platform-tools
 SYS_BIN=/bin:/sbin
 LOCAL_BIN=/usr/local/bin:/opt/local/bin:/opt/local/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/opt/X11/bin:/usr/local/git/bin:/usr/texbin
 
+# TOM section
+TOM_HOME=$HOME/Apps/tom
+CLASSPATH=$TOM_HOME/lib/tom-runtime-full.jar:$CLASSPATH
+
 # colorize ls
 export CLICOLOR=1 
 export LSCOLORS=GxFxCxDxBxegedabagaced
@@ -43,7 +47,11 @@ export PS1='\[\e[0;33m\]\u\[\e[0m\]@\[\e[1;31m\]\h\[\e[0m\]:\[\e[0;35m\]\w\[\e[0
 # Tell grep to highlight matches
 export GREP_OPTIONS='--color=auto'
 
-export PATH=$SYS_BIN:$LOCAL_BIN:$ANDROID_SDK:$PATH
+# Export TOM env
+export TOM_HOME=$TOM_HOME
+export CLASSPATH=$CLASSPATH
+
+export PATH=$SYS_BIN:$LOCAL_BIN:$ANDROID_SDK:$TOM_HOME/bin:$PATH
 
 # RubyEnv init
 eval "$(rbenv init -)"

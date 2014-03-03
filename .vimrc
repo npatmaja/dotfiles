@@ -156,6 +156,9 @@ nnoremap <leader>j :wincmd j<cr>
 nnoremap <leader>k :wincmd k<cr>
 nnoremap <leader>l :wincmd l<cr>
 
+" Wrap shortcut
+nnoremap <leader>w :set wrap linebreak nolist<cr>
+
 " Unite key mapping
 nnoremap <c-f><c-s> <esc>:Unite file buffer<cr>
 inoremap <c-f><c-s> <esc>:Unite file buffer<cr>
