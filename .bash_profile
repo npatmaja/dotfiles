@@ -58,3 +58,9 @@ eval "$(rbenv init -)"
 
 # Set stty to ixon to enable <C-s> in vim. Ref http://unix.stackexchange.com/questions/72086/ctrl-s-hang-terminal-emulator
 stty -ixon
+
+# The next line updates PATH for the Google Cloud SDK.
+source /Users/nauval/Apps/google-cloud-sdk/path.bash.inc
+
+# The next line enables bash completion for gcloud.
+source /Users/nauval/Apps/google-cloud-sdk/completion.bash.inc

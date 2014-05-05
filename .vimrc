@@ -26,6 +26,9 @@ set background=dark
 " Show line numbers
 set number numberwidth=4 
 
+" Set cursorline
+set cursorline
+
 " Remove annoying beeps
 set visualbell
 set noerrorbells
@@ -76,6 +79,10 @@ let g:html_indent_style1 = "inc"
 " latex-box plugin
 " let g:LatexBox_latexmk_options="-pdf"
 let g:LatexBox_output_type="pdf"
+
+" vim-autopairs plugin
+" make default exclude ` (backtick)
+let g:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'",'"':'"'}
 
 " Key mappings
 " Save file to ctrl+s
@@ -177,31 +184,34 @@ iabbrev @@1 noval.78@gmail.com
 iabbrev @@a @author Nauval Atmaja <noval.78@gmail.com>
 iabbrev @@b @author Nauval Atmaja <nauval.atmaja@gmail.com>
 
-" Autocommands -------------------------------------{{{
-augroup filetype_js
-	autocmd!
-	autocmd FileType javascript nnoremap <buffer> <localleader>c I//<esc>
-augroup END
+" Dissable generating comment in the next line after a comment line
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
-augroup filetype_python
-	autocmd!
-	autocmd FileType python nnoremap <buffer> <localleader>c I#<esc>
-augroup END
-
-augroup filetype_php
-	autocmd!
-	autocmd FileType php nnoremap <buffer> <localleader>c I//<esc>
-augroup
-
-augroup filetype_java
-	autocmd!
-	autocmd FileType java nnoremap <buffer> <localleader>c I//<esc>
-augroup END
+"" Autocommands -------------------------------------{{{
+"augroup filetype_js
+	"autocmd!
+	"autocmd FileType javascript nnoremap <buffer> <localleader>c I//<esc>
+"augroup END
+"
+"augroup filetype_python
+	"autocmd!
+	"autocmd FileType python nnoremap <buffer> <localleader>c I#<esc>
+"augroup END
+"
+"augroup filetype_php
+	"autocmd!
+	"autocmd FileType php nnoremap <buffer> <localleader>c I//<esc>
+"augroup
+"
+"augroup filetype_java
+	"autocmd!
+	"autocmd FileType java nnoremap <buffer> <localleader>c I//<esc>
+"augroup END
 " Vimscript file setting ----------------------------{{{
 augroup filetype_vim
 	autocmd!
 	autocmd FileType vim setlocal foldmethod=marker
 augroup END
 " }}}
-" }}}
+"" }}}
 
