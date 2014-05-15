@@ -84,6 +84,10 @@ let g:LatexBox_output_type="pdf"
 " make default exclude ` (backtick)
 let g:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'",'"':'"'}
 
+" vim latex plugin
+" associate any tex file to tex instead of plaintex
+let g:tex_flavor = "latex"
+
 " Key mappings
 " Save file to ctrl+s
 nnoremap <C-s> :w<cr>  
