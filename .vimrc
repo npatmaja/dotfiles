@@ -88,7 +88,9 @@ let g:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'",'"':'"'}
 " associate any tex file to tex instead of plaintex
 let g:tex_flavor = "latex"
 
+"""""""""""
 " Key mappings
+"""""""""""
 " Save file to ctrl+s
 nnoremap <C-s> :w<cr>  
 inoremap <C-s> <esc>:w<cr>a
@@ -177,6 +179,9 @@ inoremap <c-f><c-s> <esc>:Unite file buffer<cr>
 " PDV php documentor
 let g:pdv_template_dir = $HOME ."/.vim/bundle/pdv/templates_snip"
 nnoremap <buffer> <C-p> :call pdv#DocumentWithSnip()<CR>
+
+" Set spell to en
+nnoremap <leader>s :set spell spelllang=en<cr>
 
 " Abbreviations
 " typos
