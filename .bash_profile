@@ -31,7 +31,8 @@ SYS_BIN=/bin:/sbin
 LOCAL_BIN=/usr/local/bin:/opt/local/bin:/opt/local/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/opt/X11/bin:/usr/local/git/bin:/usr/texbin
 
 # TOM section
-TOM_HOME=$HOME/Apps/tom
+#TOM_HOME=$HOME/Apps/tom
+TOM_HOME=/Users/nauval/Codes/tom/src/dist
 CLASSPATH=$TOM_HOME/lib/tom-runtime-full.jar:$CLASSPATH
 
 # colorize ls
@@ -53,9 +54,6 @@ export CLASSPATH=$CLASSPATH
 
 export PATH=$SYS_BIN:$LOCAL_BIN:$ANDROID_SDK:$TOM_HOME/bin:$PATH
 
-# RubyEnv init
-eval "$(rbenv init -)"
-
 # Set stty to ixon to enable <C-s> in vim. Ref http://unix.stackexchange.com/questions/72086/ctrl-s-hang-terminal-emulator
 stty -ixon
 
@@ -64,3 +62,6 @@ source /Users/nauval/Apps/google-cloud-sdk/path.bash.inc
 
 # The next line enables bash completion for gcloud.
 source /Users/nauval/Apps/google-cloud-sdk/completion.bash.inc
+
+# rbenv init
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
