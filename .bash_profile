@@ -24,6 +24,7 @@ alias qtp='/Applications/QuickTime\ Player.app/Contents/MacOS/QuickTime\ Player'
 alias vim='/Applications/MacVim.app/Contents/MacOS/Vim' # Use MacVim's Vim instead of default vim
 
 alias apache='sudo apachectl'
+alias mongod='mongod --dbpath ~/.mongo-data/db'
 
 # Paths
 ANDROID_SDK=/Users/nauval/android-sdks/platform-tools 
