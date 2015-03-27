@@ -9,13 +9,8 @@ alias ls='ls -GFh'
 # Show disk usage within a folder. This will list only a folder right inside it.
 alias du='du -h -d 1'
 
-# Shortcuts
-alias ~='cd ~/'
-alias dl='cd ~/Downloads'
-alias db='cd ~/Dropbox'
-alias code='cd ~/Codes'
-alias www='cd /Library/WebServer/Documents/'
-alias gushcloud='cd ~/Codes/Gushcloud'
+# some other private aliases
+source ~/.bash_aliases
 
 alias br='. ~/.bash_profile' # or use "source ~/.bash_profile" command to reload bash profile alternatively 
 
@@ -29,16 +24,6 @@ alias mongod='mongod --dbpath ~/.mongo-data/db'
 alias redis-server='~/Apps/redis/src/redis-server'
 
 alias docpad-deploy='docpad deploy-ghpages --env static'
-
-# Git aliases
-alias gpull='git pull origin master'
-alias gpush='git push origin master'
-alias gstat='git status'
-alias gcommit='git commit -am'
-alias gco='git checkout'
-alias glog='git log --all --decorate --graph --oneline'
-alias bren="git branch"
-alias clean-master="git branch --merged | grep -v "\*" | xargs -n 1 git branch -d"
 
 # Paths
 ANDROID_SDK=/Users/nauval/android-sdks/platform-tools 
@@ -96,4 +81,8 @@ source /Users/nauval/Apps/google-cloud-sdk/completion.bash.inc
 # rbenv init
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
+
+
+export NVM_DIR="/Users/nauval/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
