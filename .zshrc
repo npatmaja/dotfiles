@@ -102,3 +102,7 @@ source ~/.bash_aliases
 # Disable terminal's interpretation of Ctrl+S
 # so vim can use the combination
 vim() STTY=-ixon command vim "$@"
+
+set -o vi
+bindkey -v
+bindkey jk vi-cmd-mode
