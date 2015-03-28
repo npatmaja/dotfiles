@@ -58,7 +58,14 @@ LIGHT_GRAY="\[\033[0;37m\]"
 LIGHT_CYAN="\[\033[1;36m\]"
 NO_COLOUR="\[\033[0m\]"
 
-export PS1="\[\e[0;33m\]\u\[\e[0m\]:>\[\e[0;35m\]\W\[\e[0m\]$GREEN\$(parse_git_branch)$NO_COLOUR\$ "
+# export PS1="\[\e[0;33m\]\u\[\e[0m\]:>\[\e[0;35m\]\W\[\e[0m\]$GREEN\$(parse_git_branch)$NO_COLOUR\$ "
+
+function _update_ps1() {
+  export PS1="$(~/powerline-shell.py --cwd-only --colorize-hostname --mode patched $? 2> /dev/null)"
+}
+
+export PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
+
 
 # Tell grep to highlight matches
 export GREP_OPTIONS='--color=auto'
