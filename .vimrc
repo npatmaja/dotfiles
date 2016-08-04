@@ -7,6 +7,10 @@ set nocompatible
 " Use pathogen
 call pathogen#infect()
 
+" Git, add spell checking and automatic wrapping at the 
+" recommended 72 columns to you commit messages
+autocmd Filetype gitcommit setlocal spell textwidth=72
+
 " set leaders
 let mapleader = ","
 let maplocalleader = "."
@@ -82,12 +86,15 @@ let g:LatexBox_output_type="pdf"
 
 " vim-autopairs plugin
 " make default exclude ` (backtick)
-let g:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'",'"':'"'}
+let g:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'",'"':'"', "`":"`"}
 
 " vim latex plugin
 " associate any tex file to tex instead of plaintex
 let g:tex_flavor = "latex"
 
+" vim airline
+" powerline status bar for vim
+let g:airline_powerline_fonts = 1
 """""""""""
 " Key mappings
 """""""""""
@@ -120,6 +127,9 @@ nnoremap <leader>" viW<esc>a"<esc>hBi"<esc>lel
 
 " Surround a word with single quote
 nnoremap <leader>' viW<esc>a'<esc>hBi'<esc>lel
+
+" Surround a word with backtick
+nnoremap <leader>` viW<esc>a`<esc>hBi`<esc>lel
 
 " Use H to go to the beginning of a line, L to the end of a line
 nnoremap H ^

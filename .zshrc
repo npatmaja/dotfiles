@@ -5,7 +5,7 @@ export ZSH=/Users/nauval/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="agnoster"
+ZSH_THEME="amuse"
 DEFAULT_USER="nauval"
 
 # Uncomment the following line to use case-sensitive completion.
@@ -50,8 +50,21 @@ plugins=(git nvm)
 
 # User configuration
 
-export PATH="/Users/nauval/.nvm/v0.10.36/bin:/Users/nauval/.rbenv/shims:/Users/nauval/Apps/google-cloud-sdk/bin:/bin:/sbin:/usr/local/bin:/opt/local/bin:/opt/local/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/opt/X11/bin:/usr/local/git/bin:/usr/texbin:/Users/nauval/android-sdks/platform-tools:/Users/nauval/Codes/tom/src/dist/bin:/Users/nauval/.rbenv/shims:/Users/nauval/Apps/google-cloud-sdk/bin:/bin:/sbin:/usr/local/bin:/opt/local/bin:/opt/local/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/opt/X11/bin:/usr/local/git/bin:/usr/texbin:/Users/nauval/android-sdks/platform-tools:/Users/nauval/Codes/tom/src/dist/bin:/Users/nauval/.rbenv/shims:/Users/nauval/Apps/google-cloud-sdk/bin:/bin:/sbin:/usr/local/bin:/opt/local/bin:/opt/local/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/opt/X11/bin:/usr/local/git/bin:/usr/texbin:/Users/nauval/android-sdks/platform-tools:/Users/nauval/Codes/tom/src/dist/bin:/Users/nauval/.rbenv/shims:/Users/nauval/Apps/google-cloud-sdk/bin:/bin:/sbin:/usr/local/bin:/opt/local/bin:/opt/local/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/opt/X11/bin:/usr/local/git/bin:/usr/texbin:/Users/nauval/android-sdks/platform-tools:/Users/nauval/Codes/tom/src/dist/bin:/Users/nauval/.rbenv/shims:/Users/nauval/Apps/google-cloud-sdk/bin:/bin:/sbin:/usr/local/bin:/opt/local/bin:/opt/local/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/opt/X11/bin:/usr/local/git/bin:/usr/texbin:/Users/nauval/android-sdks/platform-tools:/Users/nauval/Codes/tom/src/dist/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/git/bin:/usr/texbin"
+PATH_ENV="/Users/nauval/.nvm/v0.10.36/bin:/Users/nauval/.rbenv/shims"
+PATH_SDK="/Users/nauval/Apps/google-cloud-sdk/bin:/Users/nauval/android-sdks/platform-tools:/Users/nauval/Codes/tom/src/dist/bin"
+PATH_OS_BIN="/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/git/bin"
+PATH_TEXLIVE="/Library/TeX/texbin"
+PATH_LANG="/usr/local/go/bin"
+GOPATH="/Users/nauval/Codes/go"
+GOBIN="$GOPATH/bin"
+COMPOSER="/Users/nauval/.composer/vendor/bin"
+
+export PATH="$PATH_ENV:$PATH_OS_BIN:$PATH_SDK:$PATH_TEXLIVE:$PATH_LANG:$GOBIN:$COMPOSER"
+export GOPATH
+# export PATH="/Users/nauval/.nvm/v0.10.36/bin:/Users/nauval/.rbenv/shims:/Users/nauval/Apps/google-cloud-sdk/bin:/bin:/sbin:/usr/local/bin:/opt/local/bin:/opt/local/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/opt/X11/bin:/usr/local/git/bin:/usr/texbin:/Users/nauval/android-sdks/platform-tools:/Users/nauval/Codes/tom/src/dist/bin:/Users/nauval/.rbenv/shims:/Users/nauval/Apps/google-cloud-sdk/bin:/bin:/sbin:/usr/local/bin:/opt/local/bin:/opt/local/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/opt/X11/bin:/usr/local/git/bin:/usr/texbin:/Users/nauval/android-sdks/platform-tools:/Users/nauval/Codes/tom/src/dist/bin:/Users/nauval/.rbenv/shims:/Users/nauval/Apps/google-cloud-sdk/bin:/bin:/sbin:/usr/local/bin:/opt/local/bin:/opt/local/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/opt/X11/bin:/usr/local/git/bin:/usr/texbin:/Users/nauval/android-sdks/platform-tools:/Users/nauval/Codes/tom/src/dist/bin:/Users/nauval/.rbenv/shims:/Users/nauval/Apps/google-cloud-sdk/bin:/bin:/sbin:/usr/local/bin:/opt/local/bin:/opt/local/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/opt/X11/bin:/usr/local/git/bin:/usr/texbin:/Users/nauval/android-sdks/platform-tools:/Users/nauval/Codes/tom/src/dist/bin:/Users/nauval/.rbenv/shims:/Users/nauval/Apps/google-cloud-sdk/bin:/bin:/sbin:/usr/local/bin:/opt/local/bin:/opt/local/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/opt/X11/bin:/usr/local/git/bin:/usr/texbin:/Users/nauval/android-sdks/platform-tools:/Users/nauval/Codes/tom/src/dist/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/git/bin:/usr/texbin"
 # export MANPATH="/usr/local/man:$MANPATH"
+# PHP 5.6
+export PATH="$(brew --prefix homebrew/php/php56)/bin:$PATH"
 
 source $ZSH/oh-my-zsh.sh
 
@@ -101,8 +114,21 @@ source ~/.bash_aliases
 
 # Disable terminal's interpretation of Ctrl+S
 # so vim can use the combination
-vim() STTY=-ixon command vim "$@"
+# vim() STTY=-ixon command vim "$@"
+# Turn off terminal driver flow control (CTRL+S/CTRL+Q)
+setopt noflowcontrol
+stty -ixon -ixoff
 
 set -o vi
 bindkey -v
 bindkey jk vi-cmd-mode
+
+code () {
+	if [[ $# = 0  ]]
+	then
+	    open -a "Visual Studio Code" 	    	            
+	else
+		[[ $1 = /*  ]] && F="$1" || F="$PWD/${1#./}"
+		open -a "Visual Studio Code" --args "$F"
+	fi
+}
