@@ -4,8 +4,53 @@
 " consecutive undo and others
 set nocompatible
 
-" Use pathogen
-call pathogen#infect()
+call plug#begin('~/.vim/plugged')
+" NerdTree
+" On-demand loading
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle'  }
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+
+" syntax things
+Plug 'scrooloose/syntastic'
+
+Plug 'NLKNguyen/papercolor-theme'
+Plug 'ryanoasis/vim-devicons'
+
+" Javascript syntax support
+Plug 'pangloss/vim-javascript'
+Plug 'elzr/vim-json'
+Plug 'othree/jsdoc-syntax.vim' "JSODOC syntax highlight
+Plug 'heavenshell/vim-jsdoc' "JSDOC generation
+Plug 'mxw/vim-jsx'  " JSX Support
+
+" Tern (Intellissence)
+Plug 'marijnh/tern_for_vim', { 'do': 'npm install'  }
+
+" Auto complete
+Plug 'Valloric/YouCompleteMe'
+
+" Git
+Plug 'tpope/vim-fugitive'
+
+" On files and buffers
+Plug 'Shougo/unite.vim'
+
+" Auto close
+Plug 'Raimondi/delimitMate'
+
+" Status bar
+Plug 'vim-airline/vim-airline'
+
+Plug 'skammer/vim-css-color'
+Plug 'hail2u/vim-css3-syntax'
+
+Plug 'honza/vim-snippets'
+
+call plug#end()
+
+" Use pathogen (Deprecated, use Plug instead)
+" call pathogen#infect()
 
 " Git, add spell checking and automatic wrapping at the 
 " recommended 72 columns to you commit messages
@@ -21,11 +66,16 @@ filetype plugin indent on
 " Syntax highlight
 syntax on
 
+" Colorscheme
+set t_Co=256   " This is may or may not needed."
+set background=dark
+colorscheme PaperColor
+
+" NerdTree
+let NERDTreeShowHidden=1
+
 " Set buffer to be hidden
 set hidden
-
-" Uses dark background
-set background=dark
 
 " Show line numbers
 set number numberwidth=4 
@@ -41,13 +91,29 @@ set noerrorbells
 set nobackup
 set noswapfile
 
+" Syntastic
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_loc_list_height = 5
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 1
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_eslint_exec = './node_modules/.bin/eslint'
+
+highlight link SyntasticErrorSign SignColumn
+highlight link SyntasticWarningSign SignColumn
+highlight link SyntasticStyleErrorSign SignColumn
+highlight link SyntasticStyleWarningSign SignColumn
+
+
 " Indentation
-set tabstop=4	" set tab to four spaces
+set tabstop=2	" set tab to four spaces
 set backspace=indent,eol,start	" allow backspacing over everything in insert mode
 set autoindent	" set autoindent on
 set copyindent	" copy prev indentation on autoindenting
-set shiftwidth=4	" number of spaces to use for autoindenting
+set shiftwidth=2	" number of spaces to use for autoindenting
 set shiftround	" use multiple of shiftwidth when indenting with '<' and '
+set expandtab	" Expand tab to spaces
 set smarttab	" insert tabs on the start of a line according to shiftwidth, not tabstop
 
 " Search
@@ -113,6 +179,8 @@ inoremap <C-q> <esc>:q!<cr>
 " Fast edit .vimrc file
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
+
+noremap <C-\> :NERDTreeToggle<CR>
 
 " Move line up and down, ref http://stackoverflow.com/questions/7501092/can-i-map-alt-key-in-vim
 " alt+k to move one line up
