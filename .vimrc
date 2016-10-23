@@ -180,6 +180,7 @@ inoremap <C-q> <esc>:q!<cr>
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 
+" Nerd Tree toggle
 noremap <C-\> :NERDTreeToggle<CR>
 
 " Move line up and down, ref http://stackoverflow.com/questions/7501092/can-i-map-alt-key-in-vim
@@ -227,18 +228,18 @@ inoremap OD <nop>
 nnoremap <C-j> ciW<CR><Esc>:if match( @", "^\\s*$") < 0<Bar>exec "norm P-$diw+"<Bar>endif<CR> 
 
 " Use ctrl+l to clear the search highlight
-nnoremap <silent> <c-l> :nohls<cr>
+nnoremap <silent> <C-l> :nohls<cr>
 
 " Pastetoggle, useful if paste code from outside application.
 " Use only in vim terminal, if in GUI set toggle off.
 " Map toggle to ctrl+t
-nnoremap <c-t> :set invpaste paste?<cr>
-inoremap <c-t> <esc>:set invpaste paste?<cr>
+nnoremap <C-t> :set invpaste paste?<cr>
+inoremap <C-t> <esc>:set invpaste paste?<cr>
 
 " Insert a new line under current text without enter to insert mode
 nnoremap <leader>o o<esc>
 
-set pastetoggle=<c-t>
+set pastetoggle=<C-t>
 set showmode
 
 " Move to another window split
@@ -251,8 +252,8 @@ nnoremap <leader>l :wincmd l<cr>
 nnoremap <leader>w :set wrap linebreak nolist<cr>
 
 " Unite key mapping
-nnoremap <c-f><c-s> <esc>:Unite file buffer<cr>
-inoremap <c-f><c-s> <esc>:Unite file buffer<cr>
+nnoremap <C-f><C-s> <esc>:Unite file buffer<cr>
+inoremap <C-f><C-s> <esc>:Unite file buffer<cr>
 
 " PDV php documentor
 let g:pdv_template_dir = $HOME ."/.vim/bundle/pdv/templates_snip"

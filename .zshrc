@@ -1,12 +1,14 @@
+user="$(whoami)"
+
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/nauval/.oh-my-zsh
+export ZSH="$HOME"/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 ZSH_THEME="amuse"
-DEFAULT_USER="nauval"
+DEFAULT_USER="$user"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -49,22 +51,24 @@ DEFAULT_USER="nauval"
 plugins=(git nvm)
 
 # User configuration
+if [[ "$OSTYPE" == "darwin" ]]; then
+  # ENV should be maintained by nvm plugin
+  # PATH_ENV="/Users/nauval/.nvm/v0.10.36/bin:/Users/nauval/.rbenv/shims"
+  PATH_ENV=""
+  PATH_SDK="/Users/nauval/Apps/google-cloud-sdk/bin:/Users/nauval/android-sdks/platform-tools:/Users/nauval/Codes/tom/src/dist/bin"
+  PATH_OS_BIN="/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/git/bin"
+  PATH_TEXLIVE="/Library/TeX/texbin"
+  PATH_LANG="/usr/local/go/bin"
+  GOPATH="/Users/nauval/Codes/go"
+  GOBIN="$GOPATH/bin"
+  COMPOSER="/Users/nauval/.composer/vendor/bin"
 
-PATH_ENV="/Users/nauval/.nvm/v0.10.36/bin:/Users/nauval/.rbenv/shims"
-PATH_SDK="/Users/nauval/Apps/google-cloud-sdk/bin:/Users/nauval/android-sdks/platform-tools:/Users/nauval/Codes/tom/src/dist/bin"
-PATH_OS_BIN="/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/git/bin"
-PATH_TEXLIVE="/Library/TeX/texbin"
-PATH_LANG="/usr/local/go/bin"
-GOPATH="/Users/nauval/Codes/go"
-GOBIN="$GOPATH/bin"
-COMPOSER="/Users/nauval/.composer/vendor/bin"
-
-export PATH="$PATH_ENV:$PATH_OS_BIN:$PATH_SDK:$PATH_TEXLIVE:$PATH_LANG:$GOBIN:$COMPOSER"
-export GOPATH
-# export PATH="/Users/nauval/.nvm/v0.10.36/bin:/Users/nauval/.rbenv/shims:/Users/nauval/Apps/google-cloud-sdk/bin:/bin:/sbin:/usr/local/bin:/opt/local/bin:/opt/local/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/opt/X11/bin:/usr/local/git/bin:/usr/texbin:/Users/nauval/android-sdks/platform-tools:/Users/nauval/Codes/tom/src/dist/bin:/Users/nauval/.rbenv/shims:/Users/nauval/Apps/google-cloud-sdk/bin:/bin:/sbin:/usr/local/bin:/opt/local/bin:/opt/local/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/opt/X11/bin:/usr/local/git/bin:/usr/texbin:/Users/nauval/android-sdks/platform-tools:/Users/nauval/Codes/tom/src/dist/bin:/Users/nauval/.rbenv/shims:/Users/nauval/Apps/google-cloud-sdk/bin:/bin:/sbin:/usr/local/bin:/opt/local/bin:/opt/local/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/opt/X11/bin:/usr/local/git/bin:/usr/texbin:/Users/nauval/android-sdks/platform-tools:/Users/nauval/Codes/tom/src/dist/bin:/Users/nauval/.rbenv/shims:/Users/nauval/Apps/google-cloud-sdk/bin:/bin:/sbin:/usr/local/bin:/opt/local/bin:/opt/local/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/opt/X11/bin:/usr/local/git/bin:/usr/texbin:/Users/nauval/android-sdks/platform-tools:/Users/nauval/Codes/tom/src/dist/bin:/Users/nauval/.rbenv/shims:/Users/nauval/Apps/google-cloud-sdk/bin:/bin:/sbin:/usr/local/bin:/opt/local/bin:/opt/local/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/opt/X11/bin:/usr/local/git/bin:/usr/texbin:/Users/nauval/android-sdks/platform-tools:/Users/nauval/Codes/tom/src/dist/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/git/bin:/usr/texbin"
-# export MANPATH="/usr/local/man:$MANPATH"
-# PHP 5.6
-export PATH="$(brew --prefix homebrew/php/php56)/bin:$PATH"
+  export PATH="$PATH_ENV:$PATH_OS_BIN:$PATH_SDK:$PATH_TEXLIVE:$PATH_LANG:$GOBIN:$COMPOSER"
+  export GOPATH
+  # export MANPATH="/usr/local/man:$MANPATH"
+  # PHP 5.6
+  export PATH="$(brew --prefix homebrew/php/php56)/bin:$PATH"
+fi
 
 source $ZSH/oh-my-zsh.sh
 
@@ -94,41 +98,19 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # User added
-source ~/.bash_aliases
-
-# powerline...not used when using custom agnoster
-# function powerline_precmd() {
-#   export PS1="$(~/powerline-shell.py --cwd-only $? --shell zsh 2> /dev/null)"
-# }
-
-# function install_powerline_precmd() {
-#   for s in "${precmd_functions[@]}"; do
-#     if [ "$s" = "powerline_precmd" ]; then
-#       return
-#     fi
-#   done
-#   precmd_functions+=(powerline_precmd)
-# }
-
-# install_powerline_precmd
+if [ -f ~/.bash_aliases ]; then
+  source ~/.bash_aliases
+fi
 
 # Disable terminal's interpretation of Ctrl+S
 # so vim can use the combination
 # vim() STTY=-ixon command vim "$@"
 # Turn off terminal driver flow control (CTRL+S/CTRL+Q)
 setopt noflowcontrol
-stty -ixon -ixoff
+stty -ixon # -ixoff
 
 set -o vi
 bindkey -v
 bindkey jk vi-cmd-mode
 
-code () {
-	if [[ $# = 0  ]]
-	then
-	    open -a "Visual Studio Code" 	    	            
-	else
-		[[ $1 = /*  ]] && F="$1" || F="$PWD/${1#./}"
-		open -a "Visual Studio Code" --args "$F"
-	fi
-}
+
