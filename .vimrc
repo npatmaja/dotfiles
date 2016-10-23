@@ -1,6 +1,6 @@
-" This is my personal .vimrc, feel free to use it with your own risk. 
+" This is my personal .vimrc, feel free to use it with your own risk.
 
-" Set not compatible with vi. This is useful for 
+" Set not compatible with vi. This is useful for
 " consecutive undo and others
 set nocompatible
 
@@ -32,6 +32,7 @@ Plug 'Valloric/YouCompleteMe'
 
 " Git
 Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
 
 " On files and buffers
 Plug 'Shougo/unite.vim'
@@ -52,7 +53,7 @@ call plug#end()
 " Use pathogen (Deprecated, use Plug instead)
 " call pathogen#infect()
 
-" Git, add spell checking and automatic wrapping at the 
+" Git, add spell checking and automatic wrapping at the
 " recommended 72 columns to you commit messages
 autocmd Filetype gitcommit setlocal spell textwidth=72
 
@@ -78,7 +79,7 @@ let NERDTreeShowHidden=1
 set hidden
 
 " Show line numbers
-set number numberwidth=4 
+set number numberwidth=4
 
 " Set cursorline
 set cursorline
@@ -90,6 +91,10 @@ set noerrorbells
 " Don't create backup file
 set nobackup
 set noswapfile
+
+" Show all whitespaces http://stackoverflow.com/questions/1675688/make-vim-show-all-white-spaces-as-a-character/29787362#29787362
+set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
+set list
 
 " Syntastic
 let g:syntastic_always_populate_loc_list = 1
@@ -105,6 +110,8 @@ highlight link SyntasticWarningSign SignColumn
 highlight link SyntasticStyleErrorSign SignColumn
 highlight link SyntasticStyleWarningSign SignColumn
 
+" vim-jsx, javascript, react
+let g:jsx_ext_required = 0 " Allow JSX in normal JS files
 
 " Indentation
 set tabstop=2	" set tab to four spaces
@@ -129,7 +136,7 @@ set nowrap
 set laststatus=2
 " Statusline -- not used, use vim-neatstatus plugin https://github.com/maciakl/vim-neatstatus
 " set laststatus=2	" always display statusline
-" set statusline=%t	" tail of the filename 
+" set statusline=%t	" tail of the filename
 " set statusline+=[%{strlen(&fenc)?&fenc:'none'},	"file encoding
 " set statusline+=%{&ff}]	"file format
 " set statusline+=%h	"help file flag
@@ -161,12 +168,17 @@ let g:tex_flavor = "latex"
 " vim airline
 " powerline status bar for vim
 let g:airline_powerline_fonts = 1
+
 """""""""""
 " Key mappings
 """""""""""
+
 " Save file to ctrl+s
-nnoremap <C-s> :w<cr>  
-inoremap <C-s> <esc>:w<cr>a
+nnoremap <C-s> :w<cr>
+inoremap <C-s> <esc>:w<cr>
+
+" Removes all dangling whitespaces
+nnoremap <leader>c :%s/\s\+$//<cr>
 
 " Quit vim, 'ctrl+q' to quit without save
 nnoremap <C-q> :q!<cr>
@@ -187,8 +199,8 @@ noremap <C-\> :NERDTreeToggle<CR>
 " alt+k to move one line up
 nnoremap ˚ :m .-2<cr>==
 inoremap ˚ <esc>:m .-2<cr>==gi
-" alt+j to move one line down 
-nnoremap ∆ :m .+1<cr>== 
+" alt+j to move one line down
+nnoremap ∆ :m .+1<cr>==
 inoremap ∆ <esc>:m .+1<cr>==gi
 
 " Surround a word with double quote
@@ -225,7 +237,7 @@ inoremap OB <nop>
 inoremap OD <nop>
 
 " Use ctrl+j to insert new line in normal mode without entering insert mode
-nnoremap <C-j> ciW<CR><Esc>:if match( @", "^\\s*$") < 0<Bar>exec "norm P-$diw+"<Bar>endif<CR> 
+nnoremap <C-j> ciW<CR><Esc>:if match( @", "^\\s*$") < 0<Bar>exec "norm P-$diw+"<Bar>endif<CR>
 
 " Use ctrl+l to clear the search highlight
 nnoremap <silent> <C-l> :nohls<cr>
