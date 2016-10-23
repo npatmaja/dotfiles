@@ -27,6 +27,9 @@ Plug 'othree/jsdoc-syntax.vim' "JSODOC syntax highlight
 Plug 'heavenshell/vim-jsdoc' "JSDOC generation
 Plug 'mxw/vim-jsx'  " JSX Support
 
+" HTML
+Plug 'mattn/emmet-vim'
+
 " Tern (Intellissence)
 Plug 'marijnh/tern_for_vim', { 'do': 'npm install'  }
 
@@ -194,6 +197,18 @@ inoremap <C-q> <esc>:q!<cr>
 " Fast edit .vimrc file
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
+
+" Go to end of line with insert mode
+" Useful when adding a ; at the end of
+" a statement
+nnoremap <C-a> $a
+inoremap <C-a> <esc>$a
+
+" Add an empty line above the current line.
+" Useful when creating function with curly
+" braces
+nnoremap <C-o> ko
+inoremap <C-o> <esc>ko
 
 " Nerd Tree toggle
 noremap <C-\> :NERDTreeToggle<CR>
