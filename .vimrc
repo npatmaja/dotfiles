@@ -11,6 +11,9 @@ Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle'  }
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
+" Auto comment
+Plug 'scrooloose/nerdcommenter'
+
 " syntax things
 Plug 'scrooloose/syntastic'
 
