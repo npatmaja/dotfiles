@@ -230,6 +230,15 @@ nnoremap <leader>' viW<esc>a'<esc>hBi'<esc>lel
 " Surround a word with backtick
 nnoremap <leader>` viW<esc>a`<esc>hBi`<esc>lel
 
+" Surround a word with parentheses (a)
+nnoremap <leader>() viW<esc>a)<esc>hBi(<esc>lel
+
+" Surround a word with square bracket [a]
+nnoremap <leader>[] viW<esc>a]<esc>hBi[<esc>lel
+
+" Surround a word with curly bracket with spaces { a }
+nnoremap <leader>{} viW<esc>a }<esc>hBi{ <esc>lel
+
 " Use H to go to the beginning of a line, L to the end of a line
 nnoremap H ^
 nnoremap L $
@@ -302,33 +311,34 @@ iabbrev @@1 noval.78@gmail.com
 iabbrev @@a @author Nauval Atmaja <noval.78@gmail.com>
 iabbrev @@b @author Nauval Atmaja <nauval.atmaja@gmail.com>
 
+
+"" Autocommands -------------------------------------{{{
 " Dissable generating comment in the next line after a comment line
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
-"" Autocommands -------------------------------------{{{
 "augroup filetype_js
-	"autocmd!
-	"autocmd FileType javascript nnoremap <buffer> <localleader>c I//<esc>
+"autocmd!
+"autocmd FileType javascript nnoremap <buffer> <localleader>c I//<esc>
 "augroup END
 "
 "augroup filetype_python
-	"autocmd!
-	"autocmd FileType python nnoremap <buffer> <localleader>c I#<esc>
+"autocmd!
+"autocmd FileType python nnoremap <buffer> <localleader>c I#<esc>
 "augroup END
 "
 "augroup filetype_php
-	"autocmd!
-	"autocmd FileType php nnoremap <buffer> <localleader>c I//<esc>
+"autocmd!
+"autocmd FileType php nnoremap <buffer> <localleader>c I//<esc>
 "augroup
 "
 "augroup filetype_java
-	"autocmd!
-	"autocmd FileType java nnoremap <buffer> <localleader>c I//<esc>
+"autocmd!
+"autocmd FileType java nnoremap <buffer> <localleader>c I//<esc>
 "augroup END
 " Vimscript file setting ----------------------------{{{
 augroup filetype_vim
-	autocmd!
-	autocmd FileType vim setlocal foldmethod=marker
+  autocmd!
+  autocmd FileType vim setlocal foldmethod=marker
 augroup END
 " }}}
 "" }}}
