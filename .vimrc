@@ -99,7 +99,7 @@ set nobackup
 set noswapfile
 
 " Show all whitespaces http://stackoverflow.com/questions/1675688/make-vim-show-all-white-spaces-as-a-character/29787362#29787362
-set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
+set listchars=eol:¬,tab:▸\ ,trail:~,extends:>,precedes:<,space:˽
 set list
 
 " Syntastic
@@ -119,14 +119,13 @@ highlight link SyntasticStyleWarningSign SignColumn
 " vim-jsx, javascript, react
 let g:jsx_ext_required = 0 " Allow JSX in normal JS files
 
-" Indentation
-set tabstop=2	" set tab to four spaces
+" Indentation, set default to 4 spaces
+set tabstop=4	" set tab to four spaces
 set backspace=indent,eol,start	" allow backspacing over everything in insert mode
 set autoindent	" set autoindent on
 set copyindent	" copy prev indentation on autoindenting
-set shiftwidth=2	" number of spaces to use for autoindenting
+set shiftwidth=4	" number of spaces to use for autoindenting
 set shiftround	" use multiple of shiftwidth when indenting with '<' and '
-set expandtab	" Expand tab to spaces
 set smarttab	" insert tabs on the start of a line according to shiftwidth, not tabstop
 
 " Search
@@ -316,10 +315,18 @@ iabbrev @@b @author Nauval Atmaja <nauval.atmaja@gmail.com>
 " Dissable generating comment in the next line after a comment line
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
-"augroup filetype_js
-"autocmd!
-"autocmd FileType javascript nnoremap <buffer> <localleader>c I//<esc>
-"augroup END
+augroup filetype_js
+autocmd!
+" Indentation, set tab to be 2 spaces
+autocmd FileType javascript setlocal tabstop=2	" set tab to four spaces
+autocmd FileType javascript setlocal backspace=indent,eol,start	" allow backspacing over everything in insert mode
+autocmd FileType javascript setlocal autoindent	" set autoindent on
+autocmd FileType javascript setlocal copyindent	" copy prev indentation on autoindenting
+autocmd FileType javascript setlocal shiftwidth=2	" number of spaces to use for autoindenting
+autocmd FileType javascript setlocal shiftround	" use multiple of shiftwidth when indenting with '<' and '
+autocmd FileType javascript setlocal expandtab	" Expand tab to spaces
+autocmd FileType javascript setlocal smarttab	" insert tabs on the start of a line according to shiftwidth, not tabstop
+augroup END
 "
 "augroup filetype_python
 "autocmd!
