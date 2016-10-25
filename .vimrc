@@ -132,6 +132,7 @@ let g:jsx_ext_required = 0 " Allow JSX in normal JS files
 
 " Indentation, set default to 4 spaces
 set tabstop=4	" set tab to four spaces
+set softtabstop=4
 set backspace=indent,eol,start	" allow backspacing over everything in insert mode
 set autoindent	" set autoindent on
 set copyindent	" copy prev indentation on autoindenting
@@ -328,15 +329,8 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 augroup filetype_js
 autocmd!
-" Indentation, set tab to be 2 spaces
-autocmd FileType javascript setlocal tabstop=2	" set tab to four spaces
-autocmd FileType javascript setlocal backspace=indent,eol,start	" allow backspacing over everything in insert mode
-autocmd FileType javascript setlocal autoindent	" set autoindent on
-autocmd FileType javascript setlocal copyindent	" copy prev indentation on autoindenting
-autocmd FileType javascript setlocal shiftwidth=2	" number of spaces to use for autoindenting
-autocmd FileType javascript setlocal shiftround	" use multiple of shiftwidth when indenting with '<' and '
-autocmd FileType javascript setlocal expandtab	" Expand tab to spaces
-autocmd FileType javascript setlocal smarttab	" insert tabs on the start of a line according to shiftwidth, not tabstop
+" Indentation, set tab to be 2 spaces, ts: tabstop, sw: shiftwidth, sts: softtabstop
+autocmd FileType javascript setlocal ts=2 sw=2 sts=2 expandtab
 augroup END
 "
 "augroup filetype_python
