@@ -99,7 +99,18 @@ set nobackup
 set noswapfile
 
 " Show all whitespaces http://stackoverflow.com/questions/1675688/make-vim-show-all-white-spaces-as-a-character/29787362#29787362
-set listchars=eol:¬,tab:▸\ ,trail:~,extends:>,precedes:<,space:˽
+" There's differences how linux (ubuntu) and OSX renders the space
+" used to represent space, ubuntu renders it larger than it should.
+" Hence, a condition should be used to determin which unicode to use
+let os = substitute(system('uname'), "\n", "", "")
+
+if os == "Darwin"
+	set listchars=eol:¬,tab:▸\ ,trail:~,extends:>,precedes:<,space:␣
+else
+	set listchars=eol:¬,tab:▸\ ,trail:~,extends:>,precedes:<,space:˽
+endif
+
+" Activate show whitespaces
 set list
 
 " Syntastic
