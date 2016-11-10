@@ -332,16 +332,31 @@ autocmd!
 " Indentation, set tab to be 2 spaces, ts: tabstop, sw: shiftwidth, sts: softtabstop
 autocmd FileType javascript setlocal ts=2 sw=2 sts=2 expandtab
 augroup END
+
+augroup filetype_json
+autocmd!
+" Indentation, set tab to be 2 spaces, ts: tabstop, sw: shiftwidth, sts: softtabstop
+autocmd FileType json setlocal ts=2 sw=2 sts=2 expandtab
+augroup END
+
+augroup filetype_html
+autocmd!
+" Indentation, set tab to be 4 spaces, ts: tabstop, sw: shiftwidth, sts: softtabstop
+autocmd FileType xhtml setlocal ts=4 sw=4 sts=4 expandtab
+augroup END
+
+augroup filetype_php
+autocmd!
+autocmd FileType php setlocal expandtab
+augroup END
+
 "
 "augroup filetype_python
 "autocmd!
 "autocmd FileType python nnoremap <buffer> <localleader>c I#<esc>
 "augroup END
 "
-"augroup filetype_php
-"autocmd!
-"autocmd FileType php nnoremap <buffer> <localleader>c I//<esc>
-"augroup
+
 "
 "augroup filetype_java
 "autocmd!
