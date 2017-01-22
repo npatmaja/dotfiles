@@ -5,11 +5,14 @@
 set nocompatible
 
 call plug#begin('~/.vim/plugged')
-" NerdTree
+" NerdTree. Disabled as it is really slow, use newtr (vim's native 
+" file explorer) instead.
+" See http://vimcasts.org/episodes/the-file-explorer/
+"
 " On-demand loading
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle'  }
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+" Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle'  }
+" Plug 'Xuyuanp/nerdtree-git-plugin'
+" Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
 " Auto comment
 Plug 'scrooloose/nerdcommenter'
@@ -18,14 +21,15 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/syntastic'
 
 Plug 'NLKNguyen/papercolor-theme'
-Plug 'ryanoasis/vim-devicons'
 
-" Javascript syntax support
+" syntax support
 Plug 'pangloss/vim-javascript'
 Plug 'elzr/vim-json'
 Plug 'othree/jsdoc-syntax.vim' "JSODOC syntax highlight
 Plug 'heavenshell/vim-jsdoc' "JSDOC generation
 Plug 'mxw/vim-jsx'  " JSX Support
+Plug 'skammer/vim-css-color'
+Plug 'hail2u/vim-css3-syntax'
 
 " HTML
 Plug 'mattn/emmet-vim'
@@ -34,7 +38,7 @@ Plug 'mattn/emmet-vim'
 Plug 'marijnh/tern_for_vim', { 'do': 'npm install'  }
 
 " Auto complete
-Plug 'Valloric/YouCompleteMe'
+Plug 'Shougo/neocomplete.vim'
 
 " Git
 Plug 'tpope/vim-fugitive'
@@ -44,15 +48,16 @@ Plug 'airblade/vim-gitgutter'
 Plug 'Shougo/unite.vim'
 
 " Auto close
-Plug 'Raimondi/delimitMate'
+" Autoclose, brackets and quotes
+Plug 'tpope/vim-surround'
+Plug 'cohama/lexima.vim'
 
 " Status bar
 Plug 'vim-airline/vim-airline'
 
-Plug 'skammer/vim-css-color'
-Plug 'hail2u/vim-css3-syntax'
-
-Plug 'honza/vim-snippets'
+" Snippets
+Plug 'Shougo/neosnippet.vim'
+Plug 'Shougo/neosnippet-snippets'
 
 call plug#end()
 
@@ -79,7 +84,7 @@ set background=dark
 colorscheme PaperColor
 
 " NerdTree
-let NERDTreeShowHidden=1
+" let NERDTreeShowHidden=1
 
 " Set buffer to be hidden
 set hidden
@@ -151,19 +156,6 @@ set incsearch	" show search matches as you type
 set nowrap
 
 set laststatus=2
-" Statusline -- not used, use vim-neatstatus plugin https://github.com/maciakl/vim-neatstatus
-" set laststatus=2	" always display statusline
-" set statusline=%t	" tail of the filename
-" set statusline+=[%{strlen(&fenc)?&fenc:'none'},	"file encoding
-" set statusline+=%{&ff}]	"file format
-" set statusline+=%h	"help file flag
-" set statusline+=%m	"modified flag
-" set statusline+=%r	"read only flag
-" set statusline+=%y	"filetype
-" set statusline+=%=	"switch to right side
-" set statusline+=%c,	"cursor column
-" set statusline+=\%l/%L	"cursor line/total lines
-" set statusline+=\ %P	"percent through file
 
 " Vim Javascript
 let g:html_indent_inctags = "html,body,head,tbody"
@@ -176,7 +168,7 @@ let g:LatexBox_output_type="pdf"
 
 " vim-autopairs plugin
 " make default exclude ` (backtick)
-let g:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'",'"':'"', "`":"`"}
+" let g:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'",'"':'"', "`":"`"}
 
 " vim latex plugin
 " associate any tex file to tex instead of plaintex
@@ -185,6 +177,92 @@ let g:tex_flavor = "latex"
 " vim airline
 " powerline status bar for vim
 let g:airline_powerline_fonts = 1
+
+"""""""""
+" Neocomplete
+""""""""""
+
+"Note: This option must be set in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
+" Disable AutoComplPop.
+let g:acp_enableAtStartup = 0
+" Use neocomplete.
+let g:neocomplete#enable_at_startup = 1
+" Use smartcase.
+let g:neocomplete#enable_smart_case = 1
+" Set minimum syntax keyword length.
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+
+" Define dictionary.
+let g:neocomplete#sources#dictionary#dictionaries = {
+    \ 'default' : '',
+    \ 'vimshell' : $HOME.'/.vimshell_hist',
+    \ 'scheme' : $HOME.'/.gosh_completions'
+        \ }
+
+" Define keyword.
+if !exists('g:neocomplete#keyword_patterns')
+    let g:neocomplete#keyword_patterns = {}
+endif
+let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+
+" Plugin key-mappings.
+inoremap <expr><C-g>     neocomplete#undo_completion()
+inoremap <expr><C-l>     neocomplete#complete_common_string()
+
+" Recommended key-mappings.
+" <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+  return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
+  " For no inserting <CR> key.
+  "return pumvisible() ? "\<C-y>" : "\<CR>"
+endfunction
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+" Close popup by <Space>.
+"inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
+
+" AutoComplPop like behavior.
+"let g:neocomplete#enable_auto_select = 1
+
+" Enable omni completion.
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+" Enable heavy omni completion.
+if !exists('g:neocomplete#sources#omni#input_patterns')
+  let g:neocomplete#sources#omni#input_patterns = {}
+end
+
+""""""""
+" Neosnippet
+""""""""
+" Plugin key-mappings.
+" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+" SuperTab like snippets behavior.
+" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+"imap <expr><TAB>
+" \ pumvisible() ? "\<C-n>" :
+" \ neosnippet#expandable_or_jumpable() ?
+" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+" For conceal markers.
+if has('conceal')
+  set conceallevel=2 concealcursor=niv
+endif
 
 """""""""""
 " Key mappings
@@ -221,8 +299,8 @@ inoremap <C-a> <esc>$a
 nnoremap <C-o> ko
 inoremap <C-o> <esc>ko
 
-" Nerd Tree toggle
-noremap <C-\> :NERDTreeToggle<CR>
+" Open newtr at current directory
+noremap <C-\> :e.<CR>
 
 " Move line up and down, ref http://stackoverflow.com/questions/7501092/can-i-map-alt-key-in-vim
 " alt+k to move one line up
