@@ -114,3 +114,13 @@ bindkey -v
 bindkey jk vi-cmd-mode
 
 
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f /Users/nauval/Apps/google-cloud-sdk/path.zsh.inc ]; then
+  source '/Users/nauval/Apps/google-cloud-sdk/path.zsh.inc'
+fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f /Users/nauval/Apps/google-cloud-sdk/completion.zsh.inc ]; then
+  source '/Users/nauval/Apps/google-cloud-sdk/completion.zsh.inc'
+fi
