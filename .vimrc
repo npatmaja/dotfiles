@@ -20,7 +20,8 @@ Plug 'scrooloose/nerdcommenter'
 " syntax things
 Plug 'scrooloose/syntastic'
 
-Plug 'NLKNguyen/papercolor-theme'
+"Plug 'NLKNguyen/papercolor-theme'
+Plug 'trevordmiller/nova-vim'
 
 " syntax support
 Plug 'pangloss/vim-javascript'
@@ -35,7 +36,7 @@ Plug 'hail2u/vim-css3-syntax'
 Plug 'mattn/emmet-vim'
 
 " Tern (Intellissence)
-Plug 'marijnh/tern_for_vim', { 'do': 'npm install'  }
+"Plug 'marijnh/tern_for_vim', { 'do': 'npm install'  }
 
 " Auto complete
 Plug 'Shougo/neocomplete.vim'
@@ -79,9 +80,10 @@ filetype plugin indent on
 syntax on
 
 " Colorscheme
-set t_Co=256   " This is may or may not needed."
-set background=dark
-colorscheme PaperColor
+"set t_Co=256
+"set background=dark
+"colorscheme PaperColor
+colorscheme nova
 
 " NerdTree
 " let NERDTreeShowHidden=1
@@ -103,6 +105,11 @@ set noerrorbells
 set nobackup
 set noswapfile
 
+" Relative line number
+set number
+set relativenumber
+" set norelativenumber " to disable relative number
+
 " Show all whitespaces http://stackoverflow.com/questions/1675688/make-vim-show-all-white-spaces-as-a-character/29787362#29787362
 " There's differences how linux (ubuntu) and OSX renders the space
 " used to represent space, ubuntu renders it larger than it should.
@@ -116,7 +123,9 @@ else
 endif
 
 " Activate show whitespaces
-set list
+"set list
+" Hide whitespaces
+"set nolist
 
 " Syntastic
 let g:syntastic_always_populate_loc_list = 1
