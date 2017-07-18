@@ -124,3 +124,6 @@ fi
 if [ -f /Users/nauval/Apps/google-cloud-sdk/completion.zsh.inc ]; then
   source '/Users/nauval/Apps/google-cloud-sdk/completion.zsh.inc'
 fi
+
+export NVM_DIR="/Users/nauval/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
