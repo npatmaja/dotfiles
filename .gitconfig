@@ -21,8 +21,8 @@
     ll  = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
     lg = log --all --decorate --graph --oneline
 [user]
-	email = nauval@tripvisto.com
-	name = Nauval Atmaja
+	email = your@email.com
+	name = Your Name
 [core]
 	editor = vim
 [commit]
