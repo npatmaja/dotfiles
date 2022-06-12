@@ -31,6 +31,9 @@ Plug 'heavenshell/vim-jsdoc' "JSDOC generation
 Plug 'mxw/vim-jsx'  " JSX Support
 Plug 'skammer/vim-css-color'
 Plug 'hail2u/vim-css3-syntax'
+Plug 'vim-syntastic/syntastic'
+Plug 'posva/vim-vue'
+Plug 'othree/html5.vim'
 
 " HTML
 Plug 'mattn/emmet-vim'
@@ -60,6 +63,9 @@ Plug 'vim-airline/vim-airline'
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
 
+" go-vim
+Plug 'fatih/vim-go', { 'tag':'v1.21', 'do': ':GoUpdateBinaries' }
+
 call plug#end()
 
 " Use pathogen (Deprecated, use Plug instead)
@@ -80,10 +86,10 @@ filetype plugin indent on
 syntax on
 
 " Colorscheme
-"set t_Co=256
-"set background=dark
+" set t_Co=256
+" set background=dark
 "colorscheme PaperColor
-colorscheme nova
+" colorscheme nova
 
 " NerdTree
 " let NERDTreeShowHidden=1
@@ -116,11 +122,11 @@ set relativenumber
 " Hence, a condition should be used to determin which unicode to use
 let os = substitute(system('uname'), "\n", "", "")
 
-if os == "Darwin"
-	set listchars=eol:¬,tab:▸\ ,trail:~,extends:>,precedes:<,space:␣
-else
-	set listchars=eol:¬,tab:▸\ ,trail:~,extends:>,precedes:<,space:˽
-endif
+" if os == \"Darwin"
+	" set listchars=eol:¬,tab:▸\ ,trail:~,extends:>,precedes:<,space:␣
+" else
+	" set listchars=eol:¬,tab:▸\ ,trail:~,extends:>,precedes:<,space:˽
+" endif
 
 " Activate show whitespaces
 "set list
@@ -128,11 +134,15 @@ endif
 "set nolist
 
 " Syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_loc_list_height = 5
-let g:syntastic_auto_loc_list = 0
+let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 1
+let g:syntastic_check_on_wq = 0
+
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_javascript_eslint_exec = './node_modules/.bin/eslint'
 
@@ -213,6 +223,16 @@ if !exists('g:neocomplete#keyword_patterns')
     let g:neocomplete#keyword_patterns = {}
 endif
 let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+
+" ================
+" Nerdcommenter
+" ===============
+
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+
+" Use compact syntax for prettified multi-line comments
+let g:NERDCompactSexyComs = 1
 
 " Plugin key-mappings.
 inoremap <expr><C-g>     neocomplete#undo_completion()

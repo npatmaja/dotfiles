@@ -48,7 +48,7 @@ DEFAULT_USER="$user"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git nvm rbenv)
+plugins=(nvm)
 
 # User configuration
 if [[ "$OSTYPE" == "darwin" ]]; then
@@ -69,6 +69,9 @@ if [[ "$OSTYPE" == "darwin" ]]; then
   # PHP 5.6
   export PATH="$(brew --prefix homebrew/php/php56)/bin:$PATH"
 fi
+
+PATH_OS_BIN="/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/git/bin"
+export PATH="$PATH:/$HOME/.cargo/bin/:$PATH_OS_BIN"
 
 source $ZSH/oh-my-zsh.sh
 
@@ -101,6 +104,9 @@ source $ZSH/oh-my-zsh.sh
 if [ -f ~/.bash_aliases ]; then
   source ~/.bash_aliases
 fi
+if [ -f ~/.aliases ]; then
+  source ~/.aliases
+fi
 
 # Disable terminal's interpretation of Ctrl+S
 # so vim can use the combination
@@ -113,6 +119,8 @@ set -o vi
 bindkey -v
 bindkey jk vi-cmd-mode
 
+# To enable history in vim mode
+bindkey "^R" history-incremental-search-backward
 
 
 # The next line updates PATH for the Google Cloud SDK.
@@ -127,3 +135,11 @@ fi
 
 export NVM_DIR="/Users/nauval/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# golang
+export GOPATH="/Users/nauval/Codes/go"
+export PATH="$PATH:$GOPATH/bin"
+
+export PATH="$HOME/.jenv/bin:$PATH"
+eval "$(jenv init -)"
