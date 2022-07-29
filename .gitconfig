@@ -26,6 +26,6 @@
 	email = your@email.com
 	name = Your Name
 [core]
-    editor = vim
+    editor = nvim
 [commit]
     template = ~/.gitmessage
