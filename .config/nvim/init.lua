@@ -41,13 +41,6 @@ vim.g.onedark_terminal_italics = 2
 vim.o.background = 'dark'
 vim.cmd [[colorscheme moonfly]]
 
--- Set status bar settings, it might throw errors because we haven't installed the `moonfly` theme yet, so don't worry about that. 
-vim.g.lightline = {
-  colorscheme = 'moonfly',
-  active = { left = { { 'mode', 'paste' }, { 'gitbranch', 'readonly', 'filename', 'modified' } } },
-  component_function = { gitbranch = 'fugitive#head' },
-}
-
 -- Highlight on yank (copy). It will do a nice highlight blink of the thing you just copied.
 vim.api.nvim_exec(
   [[

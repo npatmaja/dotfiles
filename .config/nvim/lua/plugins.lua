@@ -17,7 +17,6 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'windwp/nvim-autopairs'
 Plug 'bluz71/vim-moonfly-colors'
-Plug 'itchyny/lightline.vim'
 Plug 'BurntSushi/ripgrep'
 Plug 'sharkdp/fd'
 Plug 'nvim-treesitter/nvim-treesitter'
@@ -34,6 +33,9 @@ Plug 'lewis6991/gitsigns.nvim' -- Adds git-related info to the sign column, simi
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'romgrk/barbar.nvim'
+Plug 'mfussenegger/nvim-jdtls'
+Plug 'nvim-lualine/lualine.nvim'
+Plug 'kyazdani42/nvim-web-devicons'
 
 -- run PlugInstall and PlugUpdate automatically, should be placed after the `plug#begin`
 -- as the plugin only be loaded after the call, error otherwise
@@ -46,4 +48,5 @@ vim.call('plug#end')
 require('gitsigns').setup()
 require('nvim-autopairs').setup{}
 require("luasnip.loaders.from_vscode").lazy_load()
+require('lualine').setup()
 luasnip = require 'luasnip'
