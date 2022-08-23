@@ -32,12 +32,14 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'lewis6991/gitsigns.nvim' -- Adds git-related info to the sign column, similar to gitgutter
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
+Plug 'kyazdani42/nvim-tree.lua'
 Plug 'romgrk/barbar.nvim'
 Plug 'mfussenegger/nvim-jdtls'
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'ixru/nvim-markdown'
 Plug 'dyng/ctrlsf.vim'
+Plug 'lukas-reineke/indent-blankline.nvim'
 
 -- run PlugInstall and PlugUpdate automatically, should be placed after the `plug#begin`
 -- as the plugin only be loaded after the call, error otherwise
@@ -51,4 +53,10 @@ require('gitsigns').setup()
 require('nvim-autopairs').setup{}
 require("luasnip.loaders.from_vscode").lazy_load()
 require('lualine').setup{ options = { theme = 'seoul256' } }
+require("nvim-tree").setup()
+require("indent_blankline").setup {
+    -- for example, context is off by default, use this to turn it on
+    show_current_context = true,
+    show_current_context_start = true,
+}
 luasnip = require 'luasnip'

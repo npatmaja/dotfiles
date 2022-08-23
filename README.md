@@ -4,6 +4,20 @@ The collections of portable dotfiles suitable for programming environment.
 
 ## Vim (NeoVim) CheetSheet
 
+### Vim window navigation
+| Keymap   | Description    |
+|--------------- | --------------- |
+| Ctrl w, s	| split window |
+| Ctrl w, w	| switch windows |
+| Ctrl w, q	| quit a window |
+| Ctrl w, v	| split window vertically |
+| Ctrl w, h	| move cursor to window left |
+| Ctrl w, l	| move cursor to window right |
+| Ctrl w, k	| move cursor to window above |
+| Ctrl w, j	| move cursor to window below |
+| :NvimTreeToggle | Toggle open nvim tree window |
+| :NvimTreeFocus | Focus to nvim tree window |
+
 ### File Editing
 | Short Key | Description |
 | --- | --- |
@@ -17,6 +31,10 @@ The collections of portable dotfiles suitable for programming environment.
 | `leader+yy` (normal mode) | Copy a line to clipboard |
 | `leader+y` (visual mode) | Copy blocked text to clipboard |
 | `leader+p` | Paste text from clipboard |
+| `C+u` | Move screen up by half page |
+| `C+b` | Move screen up by one page |
+| `C+d` | Move screen down by half page |
+| `C+f` | Move screen down by one page |
 
 
 ### Programming (autocomplete, snippets, etc)
