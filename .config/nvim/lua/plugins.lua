@@ -36,6 +36,8 @@ Plug 'romgrk/barbar.nvim'
 Plug 'mfussenegger/nvim-jdtls'
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
+Plug 'ixru/nvim-markdown'
+Plug 'dyng/ctrlsf.vim'
 
 -- run PlugInstall and PlugUpdate automatically, should be placed after the `plug#begin`
 -- as the plugin only be loaded after the call, error otherwise
