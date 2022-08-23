@@ -48,5 +48,5 @@ vim.call('plug#end')
 require('gitsigns').setup()
 require('nvim-autopairs').setup{}
 require("luasnip.loaders.from_vscode").lazy_load()
-require('lualine').setup()
+require('lualine').setup{ options = { theme = 'seoul256' } }
 luasnip = require 'luasnip'
