@@ -53,7 +53,6 @@ require('gitsigns').setup()
 require('nvim-autopairs').setup{}
 require("luasnip.loaders.from_vscode").lazy_load()
 require('lualine').setup{ options = { theme = 'seoul256' } }
-require("nvim-tree").setup()
 require("indent_blankline").setup {
     -- for example, context is off by default, use this to turn it on
     show_current_context = true,

@@ -15,8 +15,8 @@ The collections of portable dotfiles suitable for programming environment.
 | Ctrl w, l	| move cursor to window right |
 | Ctrl w, k	| move cursor to window above |
 | Ctrl w, j	| move cursor to window below |
-| :NvimTreeToggle | Toggle open nvim tree window |
-| :NvimTreeFocus | Focus to nvim tree window |
+| `:NvimTreeToggle` / `leader+tt` | Toggle open nvim tree window |
+| `:NvimTreeFocus` / `leader+tf` | Focus to nvim tree window |
 
 ### File Editing
 | Short Key | Description |

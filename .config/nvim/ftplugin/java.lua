@@ -1,5 +1,6 @@
 local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
-local workspace_dir = '~/.jdtls-workspace/' .. project_name
+local home = os.getenv('HOME')
+local workspace_dir = home .. '/.local/share/eclipse/' .. project_name
 
 local config = {
     cmd = {

@@ -7,6 +7,7 @@ require("lsp")
 require("plug.treesitter")
 require("plug.cmp")
 require("plug.telescope")
+require("plug.nvimtree")
 
 -- Set highlight on search. This will remove the highlight after searching for text.
 vim.o.hlsearch = false

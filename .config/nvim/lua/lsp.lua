@@ -33,13 +33,36 @@ capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 -- Enable the following language servers. If you ever find yourself needing 
 -- another programming language support, you'll have to find its LSP,
 -- add it to this list and make sure it is installed in your system!
-local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver', 'gopls', 'jdtls' }
+local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver', 'gopls' }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     on_attach = on_attach,
     capabilities = capabilities,
   }
 end
+
+-- LSP for lua, need separate section as it has different configuration
+-- based on https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#sumneko_lua
+nvim_lsp.sumneko_lua.setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+    settings = {
+        Lua = {
+            runtime = {
+                version = 'LuaJIT',
+            },
+            diagnostic = {
+                globals = {'vim'},
+            },
+            workspace = {
+                library = vim.api.nvim_get_runtime_file("", true),
+            },
+            telemetry = {
+                enable = false,
+            },
+        },
+    },
+}
 
 -- Make runtime files discoverable to the server.
 local runtime_path = vim.split(package.path, ';')
