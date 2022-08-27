@@ -35,6 +35,7 @@ Plug 'kyazdani42/nvim-web-devicons'
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'romgrk/barbar.nvim'
 Plug 'mfussenegger/nvim-jdtls'
+Plug 'mfussenegger/nvim-dap' -- debug adapter protocol
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'ixru/nvim-markdown'
