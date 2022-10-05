@@ -71,3 +71,14 @@ The collections of portable dotfiles suitable for programming environment.
 
 See the [default mapping](https://github.com/nvim-telescope/telescope.nvim#default-mappings) fo a more comprehensive list.
 
+### Other useful command
+| Command   | Description    |
+|--------------- | --------------- |
+| `:%!jq .` | Prettify JSON String |
+
+### JDTLS
+| Command   | Description    |
+|--------------- | --------------- |
+| `leader+df`   |  Run test class  |
+| `leader+dn`   |  Run nearest test method  |
+

@@ -1,3 +1,4 @@
+local jdtls = require('jdtls')
 local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
 local home = os.getenv('HOME')
 local workspace_dir = home .. '/.local/share/eclipse/' .. project_name
@@ -6,7 +7,7 @@ local java_plugin_path = {
     ['jdtls'] = home .. '/.local/share/java/jdtls',
     ['lombok'] = home .. '/.local/share/java/lombok',
     ['java_debug'] = home .. '/.local/share/java/java-debug/com.microsoft.java.debug.plugin/target',
-    ['vscode_java_test'] = home .. '/.local/share/java/vscode-java-test/test',
+    ['vscode_java_test'] = home .. '/.local/share/java/vscode-java-test/server',
 }
 
 local function getos()
@@ -60,8 +61,20 @@ local config = {
         -- With `hotcodereplace = 'auto' the debug adapter will try to apply code changes
         -- you make during a debug session immediately.
         -- Remove the option if you do not want that.
-        require('jdtls').setup_dap({ hotcodereplace = 'auto' })
-        require('jdtls.setup').add_commands()
+        jdtls.setup_dap({ hotcodereplace = 'auto' })
+        jdtls.setup.add_commands()
+
+        local opts = { silent = true, buffer = bufnr }
+        vim.keymap.set('n', "<A-o>", jdtls.organize_imports, opts)
+        vim.keymap.set('n', "<leader>df", jdtls.test_class, opts)
+        vim.keymap.set('n', "<leader>dn", jdtls.test_nearest_method, opts)
+        vim.keymap.set('n', "crv", jdtls.extract_variable, opts)
+        vim.keymap.set('v', 'crm', [[<ESC><CMD>lua require('jdtls').extract_method(true)<CR>]], opts)
+        vim.keymap.set('n', "crc", jdtls.extract_constant, opts)
+        local create_command = vim.api.nvim_buf_create_user_command
+        create_command(bufnr, 'W', require('me.lsp.ext').remove_unused_imports, {
+        nargs = 0,
+      })
     end
 }
 
