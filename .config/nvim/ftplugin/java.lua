@@ -79,3 +79,9 @@ local config = {
 }
 
 require('jdtls').start_or_attach(config)
+
+-- set tab size to 4
+vim.o.tabstop = 4
+vim.o.shiftwidth = 4
+vim.o.expandtab = true
+

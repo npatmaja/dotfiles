@@ -32,7 +32,7 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities()
 -- Enable the following language servers. If you ever find yourself needing 
 -- another programming language support, you'll have to find its LSP,
 -- add it to this list and make sure it is installed in your system!
-local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver', 'gopls' }
+local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver', 'gopls', 'tailwindcss'}
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     on_attach = on_attach,
@@ -68,6 +68,10 @@ local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, 'lua/?.lua')
 table.insert(runtime_path, 'lua/?/init.lua')
 
+-- Tailwindcss 
+-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#tailwindcss
+nvim_lsp.tailwindcss.setup{}
+
 -- Set completeopt to have a better completion experience.
-vim.o.completeopt = 'menuone,noselect'
+vim.o.completeopt = 'menuone,noselect,noinsert'
 

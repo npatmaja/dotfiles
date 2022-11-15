@@ -8,6 +8,7 @@ require("plug.treesitter")
 require("plug.cmp")
 require("plug.telescope")
 require("plug.nvimtree")
+require("plug.lspsaga")
 
 -- Set highlight on search. This will remove the highlight after searching for text.
 vim.o.hlsearch = false
@@ -32,8 +33,8 @@ vim.o.updatetime = 250
 vim.wo.signcolumn = 'yes'
 
 -- tab_size
-vim.o.tabstop = 4
-vim.o.shiftwidth = 4
+vim.o.tabstop = 2
+vim.o.shiftwidth = 2
 vim.o.expandtab = true
 
 -- Set colorscheme defaults (order is important here).
@@ -49,6 +50,7 @@ vim.api.nvim_exec(
     autocmd!
     autocmd TextYankPost * silent! lua vim.highlight.on_yank()
   augroup end
+  set mouse+=a
 ]],
   false
 )

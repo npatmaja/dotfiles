@@ -12,15 +12,34 @@ end
 local Plug = vim.fn['plug#']
 vim.call('plug#begin')
 
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-surround'
-Plug 'windwp/nvim-autopairs'
-Plug 'bluz71/vim-moonfly-colors'
-Plug 'BurntSushi/ripgrep'
-Plug 'sharkdp/fd'
+Plug 'tpope/vim-fugitive' -- git wrapper
+Plug 'tpope/vim-commentary' -- comment and uncomment line(s)
+Plug 'tpope/vim-surround' -- surround texts
+Plug 'windwp/nvim-autopairs' -- autopairs
+Plug 'BurntSushi/ripgrep' -- line oriented search tool
+Plug 'sharkdp/fd' -- It is a simple, fast and user-friendly alternative to find
+Plug 'dyng/ctrlsf.vim' -- An ack/ag/pt/rg powered code search and view tool
+
+-- vim UI extentions
+Plug 'nvim-lualine/lualine.nvim' -- status line
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'kyazdani42/nvim-tree.lua'
+Plug 'lewis6991/gitsigns.nvim' -- Adds git-related info to the sign column, similar to gitgutter
+Plug 'lukas-reineke/indent-blankline.nvim' -- adds indentation guides to all lines (including empty lines)
+Plug 'romgrk/barbar.nvim' -- better tab management
+Plug 'bluz71/vim-moonfly-colors' -- scheme
+
+-- fuzzy finder
+Plug 'nvim-lua/plenary.nvim' -- dependency of telescope
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-file-browser.nvim'
+
+Plug 'dyng/ctrlsf.vim'
+-- treesitter language parser for syntax highlitting and others
 Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+
+-- LSP and LSP aware autocompletion
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-buffer'
@@ -28,19 +47,15 @@ Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'saadparwaiz1/cmp_luasnip'
 Plug 'rafamadriz/friendly-snippets' -- Code snippets
 Plug 'L3MON4D3/LuaSnip' -- Autocompletion
-Plug 'nvim-lua/plenary.nvim'
-Plug 'lewis6991/gitsigns.nvim' -- Adds git-related info to the sign column, similar to gitgutter
-Plug 'nvim-telescope/telescope.nvim'
-Plug 'kyazdani42/nvim-web-devicons'
-Plug 'kyazdani42/nvim-tree.lua'
-Plug 'romgrk/barbar.nvim'
+Plug ('glepnir/lspsaga.nvim', { branch= 'main' })
+
+-- language related lsp
+-- java
 Plug 'mfussenegger/nvim-jdtls'
 Plug 'mfussenegger/nvim-dap' -- debug adapter protocol
-Plug 'nvim-lualine/lualine.nvim'
-Plug 'kyazdani42/nvim-web-devicons'
+-- markdown
 Plug 'ixru/nvim-markdown'
-Plug 'dyng/ctrlsf.vim'
-Plug 'lukas-reineke/indent-blankline.nvim'
+
 
 -- run PlugInstall and PlugUpdate automatically, should be placed after the `plug#begin`
 -- as the plugin only be loaded after the call, error otherwise
