@@ -2,6 +2,10 @@
 local telescope = require('telescope')
 local fb_actions = require "telescope".extensions.file_browser.actions
 
+local function telescope_buffer_dir()
+  return vim.fn.expand('%:p:h')
+end
+
 telescope.setup {
   defaults = {
     file_ignore_patterns = {
@@ -36,6 +40,8 @@ telescope.setup {
     }
   }
 }
+telescope.load_extension('file_browser')
+
 -- Add leader shortcuts.
 vim.api.nvim_set_keymap('n', '<leader><space>', [[<cmd>lua require('telescope.builtin').buffers()<CR>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>sf', [[<cmd>lua require('telescope.builtin').find_files({previewer = false, hidden = true, no_ignore = true})<CR>]], { noremap = true, silent = true })
@@ -47,3 +53,15 @@ vim.api.nvim_set_keymap('n', '<leader>sp', [[<cmd>lua require('telescope.builtin
 vim.api.nvim_set_keymap('n', '<leader>so', [[<cmd>lua require('telescope.builtin').tags{ only_current_buffer = true }<CR>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>?', [[<cmd>lua require('telescope.builtin').oldfiles()<CR>]], { noremap = true, silent = true })
 
+vim.keymap.set("n", "sf", function()
+  telescope.extensions.file_browser.file_browser({
+    path = "%:p:h",
+    cwd = telescope_buffer_dir(),
+    respect_gitignore = false,
+    hidden = true,
+    grouped = true,
+    previewer = false,
+    initial_mode = "normal",
+    layout_config = { height = 40 }
+  })
+end)

@@ -48,6 +48,7 @@ Plug 'saadparwaiz1/cmp_luasnip'
 Plug 'rafamadriz/friendly-snippets' -- Code snippets
 Plug 'L3MON4D3/LuaSnip' -- Autocompletion
 Plug ('glepnir/lspsaga.nvim', { branch= 'main' })
+Plug 'onsails/lspkind.nvim'
 
 -- language related lsp
 -- java
