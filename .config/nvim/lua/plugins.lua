@@ -46,7 +46,7 @@ Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'saadparwaiz1/cmp_luasnip'
 Plug 'rafamadriz/friendly-snippets' -- Code snippets
-Plug 'L3MON4D3/LuaSnip' -- Autocompletion
+Plug ('L3MON4D3/LuaSnip', { tag= 'v<CurrentMajor>.*'}) -- Autocompletion
 Plug ('glepnir/lspsaga.nvim', { branch= 'main' })
 Plug 'onsails/lspkind.nvim'
 

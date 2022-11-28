@@ -33,9 +33,10 @@ vim.o.updatetime = 250
 vim.wo.signcolumn = 'yes'
 
 -- tab_size
-vim.o.tabstop = 2
-vim.o.shiftwidth = 2
-vim.o.expandtab = true
+vim.opt.tabstop = 2
+vim.opt.softtabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.expandtab = true
 
 -- Set colorscheme defaults (order is important here).
 vim.o.termguicolors = true
