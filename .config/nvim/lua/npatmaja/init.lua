@@ -50,3 +50,4 @@ vim.api.nvim_exec(
 -- Set dark theme
 vim.opt.background = 'dark'
 vim.cmd [[colorscheme moonfly]]
+
