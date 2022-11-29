@@ -35,36 +35,45 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities()
 -- another programming language support, you'll have to find its LSP,
 -- add it to this list and make sure it is installed in your system!
 -- Tailwindcss: https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#tailwindcss
-local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver', 'gopls', 'tailwindcss' }
-for _, lsp in ipairs(servers) do
-	nvim_lsp[lsp].setup {
-		on_attach = on_attach,
-		capabilities = capabilities,
-	}
-end
-
--- LSP for lua, need separate section as it has different configuration
--- based on https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#sumneko_lua
-nvim_lsp.sumneko_lua.setup {
-	on_attach = on_attach,
-	capabilities = capabilities,
-	settings = {
-		Lua = {
-			runtime = {
-				version = 'LuaJIT',
-			},
-			diagnostic = {
-				globals = { 'vim' },
-			},
-			workspace = {
-				library = vim.api.nvim_get_runtime_file("", true),
-			},
-			telemetry = {
-				enable = false,
+local servers = { 
+	clangd = {},
+	rust_analyzer = {},
+	pyright = {},
+	tsserver = {},
+	gopls = {},
+	tailwindcss = {
+		filetypes = { "gohtml", "haml", "handlebars", "hbs", "html", "jade", "leaf", "mustache", "css", "less", "postcss", "sass", "scss", "javascript", "javascriptreact", "rescript", "typescript", "typescriptreact", "vue", "svelte" },
+	},
+	sumneko_lua = {
+		settings = {
+			Lua = {
+				runtime = {
+					version = 'LuaJIT',
+				},
+				diagnostic = {
+					globals = { 'vim' },
+				},
+				workspace = {
+					library = vim.api.nvim_get_runtime_file("", true),
+				},
+				telemetry = {
+					enable = false,
+				},
 			},
 		},
 	},
 }
+
+for lsp, _ in pairs(servers) do
+	local server_opts = {
+		on_attach = on_attach,
+		capabilities = capabilities,
+	}
+	for k, v in pairs(servers[lsp]) do
+		server_opts[k] = v
+	end
+	nvim_lsp[lsp].setup(server_opts)
+end
 
 -- Make runtime files discoverable to the server.
 local runtime_path = vim.split(package.path, ';')

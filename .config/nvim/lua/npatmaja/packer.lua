@@ -19,7 +19,7 @@ return require('packer').startup(function(use)
 	-- telescope fuzzy finder
 	use({
 		'nvim-telescope/telescope.nvim', tag = '0.1.0',
-		requires = {{'nvim-lua/plenary.nvim'}}
+		requires = { { 'nvim-lua/plenary.nvim' } }
 	})
 	use('nvim-telescope/telescope-file-browser.nvim')
 
@@ -30,10 +30,10 @@ return require('packer').startup(function(use)
 
 	-- LSP and LSP-aware autocompletions
 	use('neovim/nvim-lspconfig')
-	use('hrsh7th/nvim-cmp') -- nvim autocompletions 
+	use('hrsh7th/nvim-cmp') -- nvim autocompletions
 	use('hrsh7th/cmp-buffer') -- completion source from buffer
 	use('hrsh7th/cmp-nvim-lsp') -- completion source from lsp
-	use({"L3MON4D3/LuaSnip", tag = "v<CurrentMajor>.*"}) -- snippets engine
+	use({ "L3MON4D3/LuaSnip", tag = "v<CurrentMajor>.*" }) -- snippets engine
 	use('rafamadriz/friendly-snippets') -- snippets
 	use('saadparwaiz1/cmp_luasnip') -- cmp completion source for luasnip
 	use({
@@ -48,5 +48,9 @@ return require('packer').startup(function(use)
 
 	-- Markdown
 	use('ixru/nvim-markdown')
+	use({
+		"iamcco/markdown-preview.nvim",
+		run = function() vim.fn["mkdp#util#install"]() end,
+	})
 
 end)
