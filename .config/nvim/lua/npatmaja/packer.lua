@@ -11,7 +11,7 @@ return require('packer').startup(function(use)
 	use('nvim-lualine/lualine.nvim') -- status line
 
 	-- color scheme
-	use('bluz71/vim-moonfly-colors')
+	use('folke/tokyonight.nvim')
 
 	-- icons
 	use('kyazdani42/nvim-web-devicons')

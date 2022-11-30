@@ -32,8 +32,6 @@ vim.opt.expandtab = true
 -- Set colorscheme defaults (order is important here).
 vim.opt.termguicolors = true
 vim.g.onedark_terminal_italics = 2
-vim.o.background = 'dark'
-vim.cmd [[colorscheme moonfly]]
 
 -- Highlight on yank (copy). It will do a nice highlight blink of the thing you just copied.
 vim.api.nvim_exec(
@@ -49,5 +47,5 @@ vim.api.nvim_exec(
 
 -- Set dark theme
 vim.opt.background = 'dark'
-vim.cmd [[colorscheme moonfly]]
+vim.cmd [[colorscheme tokyonight-night]]
 
