@@ -39,7 +39,7 @@ This cheat sheet contains shortcuts to make me productive using nvim config in t
 |--------------- | --------------- |
 | `sf` | `telescope` `file_browser` open file browser |
 | `h` | `telescope` `file_browser` go to parent dir |
-| `N` or `c` | `telescope` `file_browser` create a new file in telescope file browser |
+| `N` or `c` | `telescope` `file_browser` create a new file in telescope file browser, when the new path ends with `/`, a new directory will be created |
 | `r` | `telescope` `file_browser` rename the file under cursor |
 | `/` | `telescope` `file_browser` start insert |
 | `d` | `telescope` `file_browser` delete the file under cursor |
