@@ -67,33 +67,15 @@ local config = {
 		local opts = { silent = true, buffer = bufnr }
 
 		vim.keymap.set('n', "<A-o>", jdtls.organize_imports, opts)
-		vim.keymap.set('n', "<leader>df", jdtls.test_class, opts)
-		vim.keymap.set('n', "<leader>dn", jdtls.test_nearest_method, opts)
+		vim.keymap.set('n', "<leader>ty", jdtls.test_class, opts)
+		vim.keymap.set('n', "<leader>tr", jdtls.test_nearest_method, opts)
 		vim.keymap.set('n', "crv", jdtls.extract_variable, opts)
 		vim.keymap.set('v', 'crm', [[<ESC><CMD>lua require('jdtls').extract_method(true)<CR>]], opts)
 		vim.keymap.set('n', "crc", jdtls.extract_constant, opts)
 
 		-- from lsp, if any changes in `/after/plugin/lsp.lua` changes, the following keymap should be updated
 		-- as well and vice versa
-		vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-		vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-		vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-		vim.keymap.set('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-		vim.keymap.set('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-		vim.keymap.set('n', '<leader>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
-		vim.keymap.set('n', '<leader>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
-		vim.keymap.set('n', '<leader>wl',
-			'<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
-		vim.keymap.set('n', '<leader>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-		vim.keymap.set('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-		vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-		vim.keymap.set('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-		vim.keymap.set('n', '<leader>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
-		vim.keymap.set('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
-		vim.keymap.set('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
-		vim.keymap.set('n', '<leader>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
-		vim.keymap.set('n', '<leader>so',
-			[[<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>]], opts)
+		vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
 		vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
 
 		local create_command = vim.api.nvim_buf_create_user_command
