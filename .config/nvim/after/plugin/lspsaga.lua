@@ -1,7 +1,7 @@
 local saga = require('lspsaga')
 
 saga.init_lsp_saga({
-	finder_request_timeout = 15000,
+	finder_request_timeout = 60000,
 })
 
 local opts = { noremap = true, silent = true }
