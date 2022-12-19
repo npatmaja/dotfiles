@@ -1,8 +1,8 @@
 -- Remap comma as the leader key. Leader key is a special key that will allow us to
 -- make some additional keybindings.
-vim.api.nvim_set_keymap('', '<Comma>', '<Nop>', { noremap = true, silent = true })
-vim.g.mapleader = ','
-vim.g.maplocalleader = ','
+vim.api.nvim_set_keymap('', '<Space>', '<Nop>', { noremap = true, silent = true })
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
 
 -- Use `vim.keymap.set` which provide better API instead of `vim.api.nvim_set_keymap` 
 -- https://neovim.io/doc/user/lua.html#vim.keymap.set()

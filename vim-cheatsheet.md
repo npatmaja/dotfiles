@@ -44,8 +44,11 @@ This cheat sheet contains shortcuts to make me productive using nvim config in t
 | `/` | `telescope` `file_browser` start insert |
 | `d` | `telescope` `file_browser` delete the file under cursor |
 | `q` | `telescope` `file_browser` close window |
-| `<Leader>sf` | `telescope` find files under root directory (recursively) |
-| `<Leader>sg` | `telescope` open live_grep window |
+| `<Leader>sf` | `telescope` [s]earch [f]iles under root directory (recursively) |
+| `<Leader>sg` | `telescope` [s]earch by [g]rep |
+| `<Leader>si` | `telescope` [s]earch [i]mplementation for the symbol under cursor |
+| `<Leader>space` | `telescope` list current buffers |
+| `<Leader>?` | `telescope` list recent files |
 
 ## File editing
 | | |

@@ -8,16 +8,24 @@ local function telescope_buffer_dir()
 end
 
 telescope.setup {
-	prickers = {
-		live_grep = {
-			additional_args = function(opts)
-				return { '--hidden' }
-			end
-		},
+	pickers = {
+		find_files = {
+			hidden = true,
+		}
 	},
 	defaults = {
+		vimgrep_arguments = {
+			'rg',
+			'--color=never',
+			'--no-heading',
+			'--with-filename',
+			'--line-number',
+			'--column',
+			'--smart-case',
+			'--hidden'
+		},
 		file_ignore_patterns = {
-			".git/", ".cache", "%.o", "%.a", "%.out", "%.class", "node_modules"
+			".git/.*", ".cache", "%.o", "%.a", "%.out", "%.class", "node_modules/.*"
 		},
 		mappings = {
 			i = {
@@ -54,19 +62,22 @@ telescope.setup {
 telescope.load_extension('file_browser')
 
 -- Add leader shortcuts.
--- TODO: convert to function call instead of calling cmd
 local opts = { noremap = true, silent = true }
-vim.keymap.set('n', '<leader>sf',
-	function()
-		builtin.find_files({ no_ignore = false, hidden = true })
-	end
-	, opts)
-vim.keymap.set('n', '<leader><space>',
-	function()
-		builtin.buffers()
-	end
-	, opts)
-vim.keymap.set('n', '<leader>sg', [[<cmd>lua require('telescope.builtin').live_grep()<CR>]], opts)
+opts['desc'] = '[S]earch [F]ile'
+vim.keymap.set('n', '<leader>sf', builtin.find_files, opts)
+
+opts['desc'] = '[S]earch by [G]rep'
+vim.keymap.set('n', '<leader>sg', builtin.live_grep, opts)
+
+opts['desc'] = '[S]earch [I]mplementation'
+vim.keymap.set('n', '<leader>si', builtin.lsp_implementations, opts)
+
+opts['desc'] = '[ ] Find existing buffers'
+vim.keymap.set('n', '<leader><space>', builtin.buffers, opts)
+
+opts['desc'] = '[?] Find recently opened files'
+vim.keymap.set('n', '<leader>?', builtin.oldfiles, opts)
+
 vim.keymap.set('n', 'sf', function()
 	telescope.extensions.file_browser.file_browser({
 		path = "%:p:h",
@@ -78,4 +89,4 @@ vim.keymap.set('n', 'sf', function()
 		initial_mode = "normal",
 		layout_config = { height = 40 }
 	})
-end)
+end, { desc = '[S]earch [F]ile with file browser' })
