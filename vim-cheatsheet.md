@@ -10,6 +10,8 @@ This cheat sheet contains shortcuts to make me productive using nvim config in t
 | `gh` | `Lspsaga lsp_finder` find declaration and references for symbol under cursor |
 | `gd` | `Lspsaga peek_definition` peek symbol definition in a floating window |
 | `gD` | `vim.lsp.buf` go to type definition |
+| `<Leader>si` | `telescope` [s]earch [i]mplementation for the symbol under cursor |
+| `<Leader>sc` | `telescope` [s]earch incoming [c]alls for the symbol under cursor |
 | `K` | `Lspsaga hover_doc` show doc symbol under cursor |
 | `<Leader>ca` | `Lspsaga` `normal and visual mode` open code action window |
 | `gr` | `Lspsaga rename` rename variable |
@@ -46,7 +48,6 @@ This cheat sheet contains shortcuts to make me productive using nvim config in t
 | `q` | `telescope` `file_browser` close window |
 | `<Leader>sf` | `telescope` [s]earch [f]iles under root directory (recursively) |
 | `<Leader>sg` | `telescope` [s]earch by [g]rep |
-| `<Leader>si` | `telescope` [s]earch [i]mplementation for the symbol under cursor |
 | `<Leader>space` | `telescope` list current buffers |
 | `<Leader>?` | `telescope` list recent files |
 
@@ -75,7 +76,10 @@ This cheat sheet contains shortcuts to make me productive using nvim config in t
 | `cs{symbol1}{symbol2}` | change surrounding from `{symbol1}` to `{symbol2}`, e.g.,`cs']` |
 | `cst{symbol}` | change surrounding **tag** from any tag to `{symbol}`, e.g.,`cst]` changes `<p>hello</p>` to `[ hello ]` |
 
-
+## Git
+| | |
+|--------------- | --------------- |
+| `:Gitsigns toggle_current_line_blame` | toggle show git blame for current line |
 
 
 

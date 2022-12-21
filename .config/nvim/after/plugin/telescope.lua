@@ -72,6 +72,9 @@ vim.keymap.set('n', '<leader>sg', builtin.live_grep, opts)
 opts['desc'] = '[S]earch [I]mplementation'
 vim.keymap.set('n', '<leader>si', builtin.lsp_implementations, opts)
 
+opts['desc'] = '[S]earch incoming [C]alls'
+vim.keymap.set('n', '<leader>sc', builtin.lsp_incoming_calls, opts)
+
 opts['desc'] = '[ ] Find existing buffers'
 vim.keymap.set('n', '<leader><space>', builtin.buffers, opts)
 
