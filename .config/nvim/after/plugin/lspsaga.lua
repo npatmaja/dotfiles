@@ -21,4 +21,7 @@ vim.keymap.set("n", "]e", function()
 end, { silent = true })
 vim.keymap.set("n", "<A-d>", "<cmd>Lspsaga open_floaterm<CR>", { silent = true })
 vim.keymap.set("t", "<A-d>", [[<C-\><C-n><cmd>Lspsaga close_floaterm<CR>]], { silent = true })
+-- for osx
+vim.keymap.set("n", "∂", "<cmd>Lspsaga open_floaterm<CR>", { silent = true })
+vim.keymap.set("t", "∂", [[<C-\><C-n><cmd>Lspsaga close_floaterm<CR>]], { silent = true })
 

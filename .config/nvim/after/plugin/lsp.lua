@@ -45,15 +45,10 @@ local servers = {
 	},
 }
 
-for lsp, _ in pairs(servers) do
-	local server_opts = {
-		on_attach = on_attach,
-		capabilities = capabilities,
-	}
-	for k, v in pairs(servers[lsp]) do
-		server_opts[k] = v
-	end
-	nvim_lsp[lsp].setup(server_opts)
+for lsp, opts in pairs(servers) do
+	opts['on_attach'] = on_attach
+	opts['capabilities'] = capabilities
+	nvim_lsp[lsp].setup(opts)
 end
 
 -- Make runtime files discoverable to the server.
