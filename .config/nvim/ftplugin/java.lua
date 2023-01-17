@@ -67,6 +67,7 @@ local config = {
 		local opts = { silent = true, buffer = bufnr }
 
 		vim.keymap.set('n', "<A-o>", jdtls.organize_imports, opts)
+		vim.keymap.set('n', "ø", jdtls.organize_imports, opts)
 		vim.keymap.set('n', "<leader>ty", jdtls.test_class, opts)
 		vim.keymap.set('n', "<leader>tr", jdtls.test_nearest_method, opts)
 		vim.keymap.set('n', "crv", jdtls.extract_variable, opts)
