@@ -13,9 +13,6 @@ return require('packer').startup(function(use)
 	-- color scheme
 	use('folke/tokyonight.nvim')
 
-	-- icons
-	use('kyazdani42/nvim-web-devicons')
-
 	-- telescope fuzzy finder
 	use({
 		'nvim-telescope/telescope.nvim', tag = '0.1.0',
@@ -39,6 +36,16 @@ return require('packer').startup(function(use)
 	use({
 		'glepnir/lspsaga.nvim',
 		branch = 'main',
+		opt = true,
+		event = 'LspAttach',
+		config = function()
+			require('lspsaga').setup({
+				request_timeout = 60000,
+			})
+		end,
+		requires = {
+			{ "nvim-tree/nvim-web-devicons" },
+		}
 	})
 	use('onsails/lspkind.nvim') -- vscode like lsp pictograms
 

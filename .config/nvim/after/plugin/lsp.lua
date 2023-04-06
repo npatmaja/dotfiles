@@ -25,7 +25,7 @@ local servers = {
 	tailwindcss = {
 		filetypes = { "gohtml", "haml", "handlebars", "hbs", "html", "jade", "leaf", "mustache", "css", "less", "postcss", "sass", "scss", "javascript", "javascriptreact", "rescript", "typescript", "typescriptreact", "vue", "svelte" },
 	},
-	sumneko_lua = {
+	lua_ls = {
 		settings = {
 			Lua = {
 				runtime = {
