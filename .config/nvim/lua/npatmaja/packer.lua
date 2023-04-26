@@ -9,6 +9,7 @@ return require('packer').startup(function(use)
 	use('lukas-reineke/indent-blankline.nvim') -- adds indentation guides to all lines (including empy lines)
 	use('romgrk/barbar.nvim') -- better tab management
 	use('nvim-lualine/lualine.nvim') -- status line
+	use("nvim-tree/nvim-web-devicons")
 
 	-- color scheme
 	use('folke/tokyonight.nvim')
@@ -43,11 +44,11 @@ return require('packer').startup(function(use)
 				request_timeout = 60000,
 			})
 		end,
-		requires = {
-			{ "nvim-tree/nvim-web-devicons" },
-		}
 	})
 	use('onsails/lspkind.nvim') -- vscode like lsp pictograms
+	use {
+		"williamboman/mason.nvim"
+	}
 
 	-- Java LSP
 	use('mfussenegger/nvim-jdtls') -- Java lsp (jdtls)
