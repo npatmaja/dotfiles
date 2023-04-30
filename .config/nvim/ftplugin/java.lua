@@ -4,10 +4,13 @@ local home = os.getenv('HOME')
 local workspace_dir = home .. '/.local/share/eclipse/' .. project_name
 
 local java_plugin_path = {
-	['jdtls'] = home .. '/.local/share/java/jdtls',
-	['lombok'] = home .. '/.local/share/java/lombok',
-	['java_debug'] = home .. '/.local/share/java/java-debug/com.microsoft.java.debug.plugin/target',
-	['vscode_java_test'] = home .. '/.local/share/java/vscode-java-test/server',
+	['jdtls'] = home .. '/.local/share/nvim/mason/packages/jdtls',
+	['lombok'] = home .. '/.local/share/nvim/mason/packages/jdtls',
+	['java_debug'] = home .. '/.local/share/nvim/support/java-debug/com.microsoft.java.debug.plugin/target',
+	['vscode_java_test'] = home .. '/.local/share/nvim/support/vscode-java-test/server',
+	['java_8'] = home .. '/.sdkman/candidates/java/8.0.302-open',
+	['java_17'] = home .. '/.sdkman/candidates/java/17-open',
+	['java_19'] = home .. '/.sdkman/candidates/java/19-open',
 }
 
 local function getos()
@@ -51,7 +54,22 @@ local config = {
 	},
 	root_dir = require('jdtls.setup').find_root({ '.git', 'mvnw', 'gradlew' }),
 	settings = {
-		java = {}
+		java = {
+			configuration = {
+				runtimes = {
+					name = "JavaSE-17",
+					path = java_plugin_path.java_17
+				},
+				{
+					name = "JavaSE-19",
+					path = java_plugin_path.java_19
+				},
+				{
+					name = "JavaSE-1.8",
+					path = java_plugin_path.java_8
+				}
+			}
+		}
 	},
 	init_options = {
 		bundles = bundles
