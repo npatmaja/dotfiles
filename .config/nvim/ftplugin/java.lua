@@ -1,25 +1,62 @@
 local jdtls = require('jdtls')
 local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
-local home = os.getenv('HOME')
-local workspace_dir = home .. '/.local/share/eclipse/' .. project_name
-
-local java_plugin_path = {
-	['jdtls'] = home .. '/.local/share/nvim/mason/packages/jdtls',
-	['lombok'] = home .. '/.local/share/nvim/mason/packages/jdtls',
-	['java_debug'] = home .. '/.local/share/nvim/support/java-debug/com.microsoft.java.debug.plugin/target',
-	['vscode_java_test'] = home .. '/.local/share/nvim/support/vscode-java-test/server',
-	['java_8'] = home .. '/.sdkman/candidates/java/8.0.302-open',
-	['java_17'] = home .. '/.sdkman/candidates/java/17-open',
-	['java_19'] = home .. '/.sdkman/candidates/java/19-open',
-}
 
 local function getos()
 	local u_os = io.popen('uname -s', "r"):read('*l')
+	local home_dir = os.getenv('HOME')
+	local nvim_local_share_dir = ''
+	local local_share_dir = ''
+
+	if u_os == nil or u_os == '' then
+		-- handle if the OS is windows
+		u_os = 'windows'
+		home_dir = os.getenv('USERPROFILE')
+		nvim_local_share_dir = home_dir .. '/AppData/Local/nvim-data'
+		local_share_dir = home_dir .. '/AppData/Local'
+	else
+		-- Linux/OSX
+		nvim_local_share_dir = home_dir .. '/.local/share/nvim'
+		local_share_dir = home_dir .. '/.local/share'
+	end
+
+	local mason_jdtls_dir = nvim_local_share_dir .. '/mason/packages/jdtls'
+	local nvim_jdtls_support_dir = nvim_local_share_dir .. '/support'
+	local sdkman_java_dir = home_dir .. '/.sdkman/candidates/java'
+	local workspace_dir = local_share_dir .. '/eclipse/' .. project_name
+
 	u_os = (u_os):lower()
 
+	local plugin_paths = {
+		jdtls = mason_jdtls_dir,
+		lombok = mason_jdtls_dir,
+		java_debug = nvim_jdtls_support_dir .. '/java-debug/com.microsoft.java.debug.plugin/target',
+		vscode_java_test = nvim_jdtls_support_dir .. '/vscode-java-test/server'
+	}
+	local java_paths = {
+		java_8 = sdkman_java_dir .. '/8.0.302-open',
+		java_17 = sdkman_java_dir .. '/17-open',
+		java_19 = sdkman_java_dir .. '/19-open'
+	}
+
 	local os_map = {
-		['linux'] = 'linux',
-		['darwin'] = 'mac'
+		['linux'] = {
+			config_dir = 'config_linux',
+			plugin_paths = plugin_paths,
+			java_paths = java_paths,
+			workspace_dir = workspace_dir
+		},
+		['darwin'] = {
+			config_dir = 'config_mac',
+			plugin_paths = plugin_paths,
+			java_paths = java_paths,
+			workspace_dir = workspace_dir
+		},
+		['windows'] = {
+			config_dir = 'config_win',
+			plugin_paths = plugin_paths,
+			java_paths = java_paths,
+			workspace_dir = workspace_dir
+		}
 	}
 
 	local os_name = os_map[u_os]
@@ -29,11 +66,13 @@ local function getos()
 	return os_name
 end
 
+local os_config = getos()
+
 local bundles = {
-	vim.fn.glob(java_plugin_path.java_debug .. "/com.microsoft.java.debug.plugin-*.jar")
+	vim.fn.glob(os_config.plugin_paths.java_debug .. "/com.microsoft.java.debug.plugin-*.jar")
 }
 
-vim.list_extend(bundles, vim.split(vim.fn.glob(java_plugin_path.vscode_java_test .. '/*.jar'), "\n"))
+vim.list_extend(bundles, vim.split(vim.fn.glob(os_config.plugin_paths.vscode_java_test .. '/*.jar'), "\n"))
 
 local config = {
 	cmd = {
@@ -43,14 +82,14 @@ local config = {
 		'-Declipse.product=org.eclipse.jdt.ls.core.product',
 		'-Dlog.protocol=true',
 		'-Dlog.level=ALL',
-		'-javaagent:' .. java_plugin_path.lombok .. '/lombok.jar',
+		'-javaagent:' .. os_config.plugin_paths.lombok .. '/lombok.jar',
 		'-Xms1g',
 		'--add-modules=ALL-SYSTEM',
 		'--add-opens', 'java.base/java.util=ALL-UNNAMED',
 		'--add-opens', 'java.base/java.lang=ALL-UNNAMED',
-		'-jar', java_plugin_path.jdtls .. '/plugins/org.eclipse.equinox.launcher_1.6.400.v20210924-0641.jar',
-		'-configuration', java_plugin_path.jdtls .. '/config_' .. getos(),
-		'-data', workspace_dir
+		'-jar', os_config.plugin_paths.jdtls .. '/plugins/org.eclipse.equinox.launcher_1.6.400.v20210924-0641.jar',
+		'-configuration', os_config.plugin_paths.jdtls .. '/' .. os_config.config_dir,
+		'-data', os_config.workspace_dir
 	},
 	root_dir = require('jdtls.setup').find_root({ '.git', 'mvnw', 'gradlew' }),
 	settings = {
@@ -58,15 +97,15 @@ local config = {
 			configuration = {
 				runtimes = {
 					name = "JavaSE-17",
-					path = java_plugin_path.java_17
+					path = os_config.java_paths.java_17
 				},
 				{
 					name = "JavaSE-19",
-					path = java_plugin_path.java_19
+					path = os_config.java_paths.java_19
 				},
 				{
 					name = "JavaSE-1.8",
-					path = java_plugin_path.java_8
+					path = os_config.java_paths.java_8
 				}
 			}
 		}
