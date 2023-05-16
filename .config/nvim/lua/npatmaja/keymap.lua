@@ -19,14 +19,3 @@ keymap('n', '<leader>y', '"+y', opts)
 keymap('v', '<leader>y', '"+y', opts)
 keymap('n', '<leader>p', '"+p', opts)
 keymap('v', '<leader>p', '"+p', opts)
-
--- Colemak layout
--- change esc to h,
-keymap('i', 'h,', '<Escape>', opts)
-
--- navigation using kh,.
-keymap('n', 'k', 'h', opts)
-keymap('n', 'h', 'j', opts)
-keymap('n', ',', 'k', opts)
-keymap('n', '.', 'l', opts)
-
