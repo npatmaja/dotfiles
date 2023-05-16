@@ -24,9 +24,9 @@ keymap('v', '<leader>p', '"+p', opts)
 -- change esc to h,
 keymap('i', 'h,', '<Escape>', opts)
 
--- navigation using mnei
-keymap('n', 'm', 'h', opts)
-keymap('n', 'n', 'j', opts)
-keymap('n', 'e', 'k', opts)
-keymap('n', 'i', 'l', opts)
+-- navigation using kh,.
+keymap('n', 'k', 'h', opts)
+keymap('n', 'h', 'j', opts)
+keymap('n', ',', 'k', opts)
+keymap('n', '.', 'l', opts)
 
