@@ -43,6 +43,7 @@ local servers = {
 			},
 		},
 	},
+	bashls = {},
 }
 
 for lsp, opts in pairs(servers) do

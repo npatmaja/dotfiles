@@ -3,17 +3,30 @@
 vim.api.nvim_set_keymap('', '<Space>', '<Nop>', { noremap = true, silent = true })
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
+local opts = { noremap = true, silent = true }
+local keymap = vim.keymap.set
 
 -- Use `vim.keymap.set` which provide better API instead of `vim.api.nvim_set_keymap` 
 -- https://neovim.io/doc/user/lua.html#vim.keymap.set()
 -- https://neovim.io/doc/user/map.html#%3Amap-arguments
 
 -- Disable esc and replace it with `jk`
-vim.keymap.set('i', '<Escape>', '<Nop>', { noremap = true, silent = true })
-vim.keymap.set('i', 'jk', '<Escape>', { noremap = true, silent = true })
+keymap('i', '<Escape>', '<Nop>', opts)
+keymap('i', 'jk', '<Escape>', opts)
 
 -- Copy to clipboard
-vim.keymap.set('n', '<leader>y', '"+y', { noremap = true, silent = true })
-vim.keymap.set('v', '<leader>y', '"+y', { noremap = true, silent = true })
-vim.keymap.set('n', '<leader>p', '"+p', { noremap = true, silent = true })
-vim.keymap.set('v', '<leader>p', '"+p', { noremap = true, silent = true })
+keymap('n', '<leader>y', '"+y', opts)
+keymap('v', '<leader>y', '"+y', opts)
+keymap('n', '<leader>p', '"+p', opts)
+keymap('v', '<leader>p', '"+p', opts)
+
+-- Colemak layout
+-- change esc to h,
+keymap('i', 'h,', '<Escape>', opts)
+
+-- navigation using mnei
+keymap('n', 'm', 'h', opts)
+keymap('n', 'n', 'j', opts)
+keymap('n', 'e', 'k', opts)
+keymap('n', 'i', 'l', opts)
+
