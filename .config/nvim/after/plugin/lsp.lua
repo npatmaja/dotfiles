@@ -20,6 +20,7 @@ local servers = {
 	clangd = {},
 	rust_analyzer = {},
 	pyright = {},
+	pylsp = {},
 	tsserver = {},
 	gopls = {},
 	tailwindcss = {
