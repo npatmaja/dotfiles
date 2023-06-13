@@ -5,6 +5,7 @@ local on_attach = function(_, bufnr)
 
 	local opts = { noremap = true, silent = true, buffer = bufnr }
 	vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+	vim.keymap.set('n', '<leader>f', '<cmd>lua vim.lsp.buf.format()<CR>')
 
 	vim.cmd [[ command! Format execute 'lua vim.lsp.buf.format()' ]]
 end

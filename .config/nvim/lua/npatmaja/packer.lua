@@ -4,6 +4,7 @@ return require('packer').startup(function(use)
 	-- General vim plugins
 	use('tpope/vim-commentary') -- comment and uncomment line(s)
 	use('tpope/vim-surround') -- surrounds text
+	use('tpope/vim-fugitive')
 	use('windwp/nvim-autopairs')
 	use('lewis6991/gitsigns.nvim') -- Adds git related info, similar to gitgutter
 	use('lukas-reineke/indent-blankline.nvim') -- adds indentation guides to all lines (including empy lines)
@@ -53,12 +54,5 @@ return require('packer').startup(function(use)
 	-- Java LSP
 	use('mfussenegger/nvim-jdtls') -- Java lsp (jdtls)
 	use('mfussenegger/nvim-dap') -- java debugger
-
-	-- Markdown
-	use('ixru/nvim-markdown')
-	use({
-		"iamcco/markdown-preview.nvim",
-		run = function() vim.fn["mkdp#util#install"]() end,
-	})
 
 end)

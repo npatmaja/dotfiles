@@ -15,6 +15,9 @@ This cheat sheet contains shortcuts to make me productive using nvim config in t
 | `K` | `Lspsaga hover_doc` show doc symbol under cursor |
 | `<Leader>ca` | `Lspsaga` `normal and visual mode` open code action window |
 | `gr` | `Lspsaga rename` rename variable |
+| `<Leader>sl` | `Lspsaga show_line_diagnostic` [s]how [l]ine diagnostic. Press `<Enter>` to close |
+| `<Leader>sw` | `Lspsaga show_workspace_diagnostic` [s]how [w]orkspace diagnostic. Press `<Enter>` to close |
+| `<Leader>sb` | `Lspsaga show_buf_diagnostic` [s]how [b]buffer diagnostic. Press `<Enter>` to close |
 | `[d` | `Lspsaga diagnostic_jump_prev` jump to previous diagnostic |
 | `]d` | `Lspsaga diagnostic_jump_next` jump to next diagnostic |
 | `[e` | `Lspsaga` jump to previous error diagnostic |
@@ -29,6 +32,7 @@ This cheat sheet contains shortcuts to make me productive using nvim config in t
 | `<Leader>ty` | `jdtls` run test class |
 | `<Leader>tr` | `jdtls` run test for nearest method |
 | `:Format` | `vim.lsp.buf` format file in the current buffer |
+| `<Leader>f` | `vim.lsp.buf` format file in the current buffer |
 
 ## Commenting
 | | |
@@ -63,6 +67,10 @@ This cheat sheet contains shortcuts to make me productive using nvim config in t
 | `<Leader>yy` | copy current line to clipboard |
 | `<Leader>y` | `visual mode` copy selected lines to clipboard |
 | `<leader>p` | paste from clipboard |
+| `<leader>w` | save current buf |
+| `<leader>wq` | save current buf and close |
+| `<leader>wy` | save all changed opened bufs |
+| `v%` | select matching braces, inclusive |
 
 ## Vim Surrounds
 `{symbol}` refers to mostly parentheses, brackets, quotes, XML tags.
