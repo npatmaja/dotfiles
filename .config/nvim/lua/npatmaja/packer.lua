@@ -6,10 +6,10 @@ return require('packer').startup(function(use)
 	use('tpope/vim-surround') -- surrounds text
 	use('tpope/vim-fugitive')
 	use('windwp/nvim-autopairs')
-	use('lewis6991/gitsigns.nvim') -- Adds git related info, similar to gitgutter
+	use('lewis6991/gitsigns.nvim')          -- Adds git related info, similar to gitgutter
 	use('lukas-reineke/indent-blankline.nvim') -- adds indentation guides to all lines (including empy lines)
-	use('romgrk/barbar.nvim') -- better tab management
-	use('nvim-lualine/lualine.nvim') -- status line
+	use('romgrk/barbar.nvim')               -- better tab management
+	use('nvim-lualine/lualine.nvim')        -- status line
 	use("nvim-tree/nvim-web-devicons")
 
 	-- color scheme
@@ -17,7 +17,8 @@ return require('packer').startup(function(use)
 
 	-- telescope fuzzy finder
 	use({
-		'nvim-telescope/telescope.nvim', tag = '0.1.0',
+		'nvim-telescope/telescope.nvim',
+		tag = '0.1.0',
 		requires = { { 'nvim-lua/plenary.nvim' } }
 	})
 	use('nvim-telescope/telescope-file-browser.nvim')
@@ -29,12 +30,12 @@ return require('packer').startup(function(use)
 
 	-- LSP and LSP-aware autocompletions
 	use('neovim/nvim-lspconfig')
-	use('hrsh7th/nvim-cmp') -- nvim autocompletions
-	use('hrsh7th/cmp-buffer') -- completion source from buffer
-	use('hrsh7th/cmp-nvim-lsp') -- completion source from lsp
+	use('hrsh7th/nvim-cmp')                             -- nvim autocompletions
+	use('hrsh7th/cmp-buffer')                           -- completion source from buffer
+	use('hrsh7th/cmp-nvim-lsp')                         -- completion source from lsp
 	use({ "L3MON4D3/LuaSnip", tag = "v<CurrentMajor>.*" }) -- snippets engine
-	use('rafamadriz/friendly-snippets') -- snippets
-	use('saadparwaiz1/cmp_luasnip') -- cmp completion source for luasnip
+	use('rafamadriz/friendly-snippets')                 -- snippets
+	use('saadparwaiz1/cmp_luasnip')                     -- cmp completion source for luasnip
 	use({
 		'glepnir/lspsaga.nvim',
 		branch = 'main',
@@ -54,5 +55,7 @@ return require('packer').startup(function(use)
 	-- Java LSP
 	use('mfussenegger/nvim-jdtls') -- Java lsp (jdtls)
 	use('mfussenegger/nvim-dap') -- java debugger
-
+	use('leoluz/nvim-dap-go')   -- dap helper for golang
+	use({ "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } })
+	use('theHamsta/nvim-dap-virtual-text')
 end)
