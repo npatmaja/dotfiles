@@ -49,3 +49,7 @@ vim.api.nvim_exec(
 vim.opt.background = 'dark'
 vim.cmd [[colorscheme tokyonight-night]]
 
+-- auto format on save
+vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.format()]]
+
+

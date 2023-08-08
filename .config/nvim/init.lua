@@ -1,2 +1,2 @@
 require('npatmaja')
-
+require('kiroku')

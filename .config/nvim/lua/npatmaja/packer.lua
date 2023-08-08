@@ -8,7 +8,7 @@ return require('packer').startup(function(use)
 	use('windwp/nvim-autopairs')
 	use('lewis6991/gitsigns.nvim')          -- Adds git related info, similar to gitgutter
 	use('lukas-reineke/indent-blankline.nvim') -- adds indentation guides to all lines (including empy lines)
-	use('romgrk/barbar.nvim')               -- better tab management
+	use({ 'akinsho/bufferline.nvim', tag = "*" })
 	use('nvim-lualine/lualine.nvim')        -- status line
 	use("nvim-tree/nvim-web-devicons")
 
@@ -30,17 +30,15 @@ return require('packer').startup(function(use)
 
 	-- LSP and LSP-aware autocompletions
 	use('neovim/nvim-lspconfig')
-	use('hrsh7th/nvim-cmp')                             -- nvim autocompletions
-	use('hrsh7th/cmp-buffer')                           -- completion source from buffer
-	use('hrsh7th/cmp-nvim-lsp')                         -- completion source from lsp
-	use({ "L3MON4D3/LuaSnip", tag = "v<CurrentMajor>.*" }) -- snippets engine
-	use('rafamadriz/friendly-snippets')                 -- snippets
-	use('saadparwaiz1/cmp_luasnip')                     -- cmp completion source for luasnip
+	use('hrsh7th/nvim-cmp')                -- nvim autocompletions
+	use('hrsh7th/cmp-buffer')              -- completion source from buffer
+	use('hrsh7th/cmp-nvim-lsp')            -- completion source from lsp
+	use({ "L3MON4D3/LuaSnip", tag = "v2.*" }) -- snippets engine
+	use('rafamadriz/friendly-snippets')    -- snippets
+	use('saadparwaiz1/cmp_luasnip')        -- cmp completion source for luasnip
 	use({
-		'glepnir/lspsaga.nvim',
-		branch = 'main',
-		opt = true,
-		event = 'LspAttach',
+		'nvimdev/lspsaga.nvim',
+		after = 'nvim-lspconfig',
 		config = function()
 			require('lspsaga').setup({
 				request_timeout = 60000,
