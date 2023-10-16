@@ -40,6 +40,7 @@ local servers = {
 	bashls = {},
 	marksman = {},
 	html = {},
+	sqlls = {},
 }
 
 for lsp, opts in pairs(servers) do
