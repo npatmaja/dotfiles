@@ -6,10 +6,10 @@ return require('packer').startup(function(use)
 	use('tpope/vim-surround') -- surrounds text
 	use('tpope/vim-fugitive')
 	use('windwp/nvim-autopairs')
-	use('lewis6991/gitsigns.nvim')          -- Adds git related info, similar to gitgutter
-	use('lukas-reineke/indent-blankline.nvim') -- adds indentation guides to all lines (including empy lines)
+	use('lewis6991/gitsigns.nvim')                               -- Adds git related info, similar to gitgutter
+	use({ 'lukas-reineke/indent-blankline.nvim', tag = "v2.20.8" }) -- adds indentation guides to all lines (including empy lines)
 	use({ 'akinsho/bufferline.nvim', tag = "*" })
-	use('nvim-lualine/lualine.nvim')        -- status line
+	use('nvim-lualine/lualine.nvim')                             -- status line
 	use("nvim-tree/nvim-web-devicons")
 
 	-- color scheme
