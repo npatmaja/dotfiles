@@ -56,4 +56,10 @@ return require('packer').startup(function(use)
 	use('leoluz/nvim-dap-go')   -- dap helper for golang
 	use({ "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } })
 	use('theHamsta/nvim-dap-virtual-text')
+
+	-- markdown preview
+	use({
+		"iamcco/markdown-preview.nvim",
+		run = function() vim.fn["mkdp#util#install"]() end,
+	})
 end)
