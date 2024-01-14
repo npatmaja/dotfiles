@@ -17,7 +17,8 @@ local servers = {
 	tailwindcss = {
 		filetypes = { "gohtml", "haml", "handlebars", "hbs", "html", "jade", "leaf", "mustache", "css", "less",
 			"postcss", "sass", "scss", "javascript", "javascriptreact", "rescript", "typescript", "typescriptreact",
-			"vue", "svelte" },
+			"vue", "svelte", "templ" },
+		init_options = { userLanguages = { templ = "html" } }
 	},
 	lua_ls = {
 		settings = {
@@ -39,8 +40,11 @@ local servers = {
 	},
 	bashls = {},
 	marksman = {},
-	html = {},
+	html = {
+		filetypes = { "html", "templ" }
+	},
 	sqlls = {},
+	templ = {},
 }
 
 for lsp, opts in pairs(servers) do

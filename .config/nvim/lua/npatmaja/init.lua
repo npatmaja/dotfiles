@@ -58,3 +58,9 @@ vim.filetype.add({
 		mdx = 'mdx'
 	}
 })
+-- templ supports
+vim.filetype.add({
+	extension = {
+		templ = "templ"
+	}
+})
