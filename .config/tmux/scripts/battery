@@ -1,0 +1,124 @@
+#!/bin/sh
+
+linux_get_bat ()
+{
+    bf=$(cat $BAT_FULL)
+    bn=$(cat $BAT_NOW)
+    echo $(( 100 * $bn / $bf ))
+}
+
+freebsd_get_bat ()
+{
+    echo "$(sysctl -n hw.acpi.battery.life)"
+
+}
+
+decorate_with_icon()
+{
+    perc=$1
+    perc_sign="%"
+    if [[ $perc -le 10 ]]; then
+        echo "$perc$perc_sign 󰁺"
+        exit
+    elif [[ $perc -le 20 ]]; then
+        echo "$perc$perc_sign 󰁻"
+        exit
+    elif [[ $perc -le 30 ]]; then
+        echo "$perc$perc_sign 󰁼"
+        exit
+    elif [[ $perc -le 40 ]]; then
+        echo "$perc$perc_sign 󰁽"
+        exit
+    elif [[ $perc -le 50 ]]; then
+        echo "$perc$perc_sign 󰁾"
+        exit
+    elif [[ $perc -le 60 ]]; then
+        echo "$perc$perc_sign 󰁿"
+        exit
+    elif [[ $perc -le 70 ]]; then
+        echo "$perc$perc_sign 󰂀"
+        exit
+    elif [[ $perc -le 80 ]]; then
+        echo "$perc$perc_sign 󰂁"
+        exit
+    elif [[ $perc -le 90 ]]; then
+        echo "$perc$perc_sign 󰂂"
+        exit
+    elif [[ $perc -le 100 ]]; then
+        echo "$perc$perc_sign 󰁹"
+        exit
+    fi
+        
+}
+
+# Do with grep and awk unless too hard
+
+# TODO Identify which machine we're on from teh script.
+
+battery_status()
+{
+case $(uname -s) in
+    "Linux")
+        BATPATH=/sys/class/power_supply/BAT0
+        STATUS=$BATPATH/status
+        BAT_FULL=$BATPATH/energy_full
+        BAT_NOW=$BATPATH/energy_now
+        if [ "$1" = `cat $STATUS` -o "$1" = "" ]; then
+            linux_get_bat
+        fi
+        ;;
+    "FreeBSD")
+        STATUS=`sysctl -n hw.acpi.battery.state`
+        case $1 in
+            "Discharging")
+                if [ $STATUS -eq 1 ]; then
+                    freebsd_get_bat
+                fi
+                ;;
+            "Charging")
+                if [ $STATUS -eq 2 ]; then
+                    freebsd_get_bat
+                fi
+                ;;
+            "")
+                freebsd_get_bat
+                ;;
+        esac
+        ;;
+    "Darwin")
+        ext_connected=false
+        full=false
+        ioreg -c AppleSmartBattery -w0 | \
+        grep -o '"[^"]*" = [^ ]*' | \
+        sed -e 's/= //g' -e 's/"//g' | \
+        sort | \
+        while read key value; do
+            case $key in
+                "MaxCapacity")
+                    export maxcap=$value;;
+                "CurrentCapacity")
+                    export curcap=$value;;
+                "ExternalConnected")
+                    if [ "Yes" = "$value" ]; then
+                        ext_connected=true
+                    fi
+                ;;
+                "FullyCharged")
+                    if [ "$value" = "Yes" ]; then
+                        full=true
+                    fi
+                ;;
+            esac
+            if [[ -n "$maxcap" && -n $curcap ]]; then
+                charge_icon=""
+                if [[ $ext_connected = true ]]; then
+                    charge_icon="󱐋"
+                fi
+                perc=$(( 100 * $curcap / $maxcap )) 
+                echo $charge_icon `decorate_with_icon $perc` 
+                break
+            fi
+        done
+esac
+}
+echo `battery_status`
