@@ -1,7 +1,11 @@
-# Vim Cheat Sheet
+# Vim Cheat Sheet (DEPRECATED)
 This cheat sheet contains shortcuts to make me productive using nvim config in this repository.
 
 > DISCLAIMER: This cheat sheet may won't work with other nvim config setup
+
+## DEPRECATION NOTE
+Favouring the use of [kckstrt.nvim](https://github.com/npatmaja/kckstrt.nvim) which uses
+[which-key](https://github.com/folke/which-key.nvim) to show key bindings in the vim.
 
 ## Intellisense via lsp (lspsaga) and jdtls
 | | |
