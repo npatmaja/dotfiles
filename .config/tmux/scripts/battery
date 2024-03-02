@@ -18,34 +18,34 @@ decorate_with_icon()
     perc=$1
     perc_sign="%"
     if [[ $perc -le 10 ]]; then
-        echo "$perc$perc_sign 󰁺"
+        echo "#[fg=colour198]$perc$perc_sign 󰁺#[default]"
         exit
     elif [[ $perc -le 20 ]]; then
-        echo "$perc$perc_sign 󰁻"
+        echo "#[fg=colour214]$perc$perc_sign 󰁻#[default]"
         exit
     elif [[ $perc -le 30 ]]; then
-        echo "$perc$perc_sign 󰁼"
+        echo "#[fg=colour142]$perc$perc_sign 󰁼#[default]"
         exit
     elif [[ $perc -le 40 ]]; then
-        echo "$perc$perc_sign 󰁽"
+        echo "#[fg=colour149]$perc$perc_sign 󰁽#[default]"
         exit
     elif [[ $perc -le 50 ]]; then
-        echo "$perc$perc_sign 󰁾"
+        echo "#[fg=colour155]$perc$perc_sign 󰁾#[default]"
         exit
     elif [[ $perc -le 60 ]]; then
-        echo "$perc$perc_sign 󰁿"
+        echo "#[fg=colour118]$perc$perc_sign 󰁿#[default]"
         exit
     elif [[ $perc -le 70 ]]; then
-        echo "$perc$perc_sign 󰂀"
+        echo "#[fg=colour118]$perc$perc_sign 󰂀#[default]"
         exit
     elif [[ $perc -le 80 ]]; then
-        echo "$perc$perc_sign 󰂁"
+        echo "#[fg=colour118]$perc$perc_sign 󰂁#[default]"
         exit
-    elif [[ $perc -le 90 ]]; then
-        echo "$perc$perc_sign 󰂂"
+    elif [[ $percr -le 90 ]]; then
+        echo "#[fg=colour118]$perc$perc_sign 󰂂#[default]"
         exit
     elif [[ $perc -le 100 ]]; then
-        echo "$perc$perc_sign 󰁹"
+        echo "#[fg=colour118]$perc$perc_sign 󰁹#[default]"
         exit
     fi
         
@@ -112,7 +112,7 @@ case $(uname -s) in
             if [[ -n "$maxcap" && -n $curcap ]]; then
                 charge_icon=""
                 if [[ $ext_connected = true ]]; then
-                    charge_icon="󱐋"
+                    charge_icon="#[fg=colour178]󱐋#[default]"
                 fi
                 perc=$(( 100 * $curcap / $maxcap )) 
                 echo $charge_icon `decorate_with_icon $perc` 
