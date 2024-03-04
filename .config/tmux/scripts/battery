@@ -41,7 +41,7 @@ decorate_with_icon()
     elif [[ $perc -le 80 ]]; then
         echo "#[fg=colour118]$perc$perc_sign 󰂁#[default]"
         exit
-    elif [[ $percr -le 90 ]]; then
+    elif [[ $perc -le 90 ]]; then
         echo "#[fg=colour118]$perc$perc_sign 󰂂#[default]"
         exit
     elif [[ $perc -le 100 ]]; then
