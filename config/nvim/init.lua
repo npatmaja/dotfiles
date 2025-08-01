@@ -1,2 +1,0 @@
-require('npatmaja')
-require('kiroku')
