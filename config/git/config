@@ -22,9 +22,8 @@
     ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
     ll  = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
     lg = log --all --decorate --graph --oneline
-[user]
-    email = your@email.com
-    name = Your Name
+[include]
+    path = ~/.config/git/config.local
 [core]
     editor = nvim
 [commit]
