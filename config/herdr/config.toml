@@ -1,0 +1,65 @@
+onboarding = false
+
+# Keybindings mirrored from ~/.config/tmux/tmux.conf
+[keys]
+prefix = "ctrl+a"
+
+# Splits: | side-by-side, - stacked (tmux `bind |` / `bind -`)
+split_vertical = "prefix+|"
+split_horizontal = "prefix+minus"
+
+# tmux `bind r` reloads, so resize_mode moves off prefix+r
+reload_config = "prefix+r"
+resize_mode = "prefix+shift+r"
+
+# lazygit takes prefix+g below, so goto/settings shift down one
+goto = "prefix+s"
+settings = "prefix+shift+s"
+
+new_tab = "prefix+c"
+rename_tab = "prefix+comma"
+previous_tab = "prefix+p"
+next_tab = "prefix+n"
+switch_tab = "prefix+1..9"
+switch_workspace = "prefix+shift+1..9"
+detach = "prefix+d"
+
+# Navigate mode: j/k walk the workspace list, arrows still work
+navigate_workspace_up = ["k", "up"]
+navigate_workspace_down = ["j", "down"]
+navigate_pane_left = "h"
+navigate_pane_right = "l"
+navigate_pane_up = "shift+k"
+navigate_pane_down = "shift+j"
+
+focus_pane_left = ["prefix+h", "alt+left"]
+focus_pane_down = ["prefix+j", "alt+down"]
+focus_pane_up = ["prefix+k", "alt+up"]
+focus_pane_right = ["prefix+l", "alt+right"]
+
+# Alt+1..9 jumps tabs without the prefix (tmux `bind -n M-1..M-9`)
+[keys.indexed]
+tabs = "alt"
+
+# tmux `bind t`
+[[keys.command]]
+key = "prefix+t"
+type = "popup"
+command = "$SHELL"
+width = "80%"
+height = "80%"
+
+# tmux `bind g`
+[[keys.command]]
+key = "prefix+g"
+type = "popup"
+command = "lazygit"
+width = "90%"
+height = "90%"
+
+[ui]
+agent_panel_sort = "spaces"
+
+show_agent_labels_on_pane_borders = false
+[ui.toast]
+delivery = "herdr"
